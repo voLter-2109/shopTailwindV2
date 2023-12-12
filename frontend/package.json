@@ -1,0 +1,47 @@
+{
+	"name": "frontend",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbo",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@react-icons/all-files": "^4.1.0",
+		"@reduxjs/toolkit": "^1.9.5",
+		"@tanstack/react-query": "^4.35.3",
+		"@tanstack/react-query-devtools": "^4.35.7",
+		"@trivago/prettier-plugin-sort-imports": "^4.2.0",
+		"@types/js-cookie": "^3.0.4",
+		"@types/node": "20.6.0",
+		"@types/react": "18.2.21",
+		"@types/react-dom": "18.2.7",
+		"axios": "^1.5.0",
+		"clsx": "^2.0.0",
+		"eslint-plugin-import": "^2.29.0",
+		"js-cookie": "^3.0.5",
+		"next": "13.4.19",
+		"next-redux-wrapper": "^8.1.0",
+		"prettier": "^3.0.3",
+		"prettier-plugin-tailwindcss": "^0.5.4",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"react-error-boundary": "^4.0.11",
+		"react-hook-form": "^7.46.2",
+		"react-icons": "^4.11.0",
+		"react-paginate": "^8.2.0",
+		"react-redux": "^8.1.2",
+		"react-simple-star-rating": "^5.1.7",
+		"redux-persist": "^6.0.0",
+		"sass": "^1.68.0",
+		"typescript": "5.2.2"
+	},
+	"devDependencies": {
+		"@types/redux-persist": "^4.3.1",
+		"autoprefixer": "^10.4.15",
+		"postcss": "^8.4.29",
+		"tailwindcss": "^3.3.3"
+	}
+}

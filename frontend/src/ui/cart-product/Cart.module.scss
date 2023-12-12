@@ -1,0 +1,24 @@
+.footer {
+	display: flex;
+	width: 100%;
+	font-size: 18px;
+	color: #ff9902;
+	justify-content: center;
+	margin: 10px 0;
+
+	& div {
+		margin-right: 10px;
+	}
+}
+
+.item {
+	display: flex;
+	border-radius: 5px;
+    padding: 5px;
+	border: 1px solid rgba(108, 108, 108, 0.212);
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+
+//item name price cart footer
