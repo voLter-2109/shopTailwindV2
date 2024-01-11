@@ -21,12 +21,12 @@ export class AuthService {
 	) {}
 
 	async login(dto: AuthDto) {
-		console.log(dto)
+		// console.log(dto);
 		const user = await this.validateUser(dto);
-		console.log(user)
-		// console.log('login service ' + dto);
+		// console.log(dto);
+		console.log('login service back ' + dto);
 		const tokens = await this.issueTokens(user.id);
-
+		console.log('login service back ' +tokens);
 		return {
 			user: this.returnUserFields(user),
 			...tokens
@@ -34,10 +34,10 @@ export class AuthService {
 	}
 
 	async getNewTokens(refreshToken: string) {
-		// console.log(refreshToken);
-		// console.log('refrehtoken-back  ' + refreshToken);
+		// console.log(refreshToken); 
+		console.log('refrehtoken-back  ' + refreshToken);
 		const result = await this.jwt.verify(refreshToken);
-		// console.log(result);
+		console.log(result);
 		if (!result) throw new UnauthorizedException('Invalid refresh token');
 
 		const user = await this.userService.byId(result.id, {
@@ -85,11 +85,11 @@ export class AuthService {
 		const data = { id: userId };
 
 		const accessToken = this.jwt.sign(data, {
-			expiresIn: '1d'
+			expiresIn: '24h'
 		});
 
 		const refreshToken = this.jwt.sign(data, {
-			expiresIn: '7d'
+			expiresIn: '30d'
 		});
 		// console.log('sing new token backend ' + accessToken);
 
@@ -112,7 +112,7 @@ export class AuthService {
 				email: dto.email
 			}
 		});
-		
+
 		if (!user) {
 			throw new NotFoundException('User not found');
 		}

@@ -21,6 +21,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		const accessToken = getAccessToken()
 
 		if (accessToken) checkAuth()
+		console.log(1)
 	}, [])
 
 	useEffect(() => {

@@ -17,6 +17,7 @@ export const getUserFromStorage = () => {
 }
 
 export const removeFromStorage = () => {
+	console.log("remove from storage")
 	Cookies.remove(ACCESS_TOKEN)
 	Cookies.remove(REFRESH_TOKEN)
 	localStorage.removeItem('user')
