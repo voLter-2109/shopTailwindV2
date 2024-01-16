@@ -3,6 +3,7 @@
 import Cookies from 'js-cookie'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import NotFound from '../../app/[...not-found]/page'
 import { ADMIN_PANEL_URL } from '../../config/url.config'
 import { REFRESH_TOKEN } from '../../constant/token.constants'
 import { useActions } from '../../hooks/useActions'
@@ -45,7 +46,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 	if (user && isProtectedRouter) return <>{children}</>
 
-	// if (user && isAdminRouter) return <NotFound />
+	// авторизирован и роут только для admin
+	if (user && isAdminRouter) return <NotFound />
 
 	pathname !== '/auth' && router.replace('/auth')
 	return null

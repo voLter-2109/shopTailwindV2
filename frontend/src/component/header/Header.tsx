@@ -43,31 +43,9 @@ const Header: FC = () => {
 
 	return (
 		<header
-			className='bg-secondary w-full p-6 h-20 border grid'
-			style={{
-				gridTemplateColumns: '1fr 3fr 1fr',
-				padding: '1.5rem',
-				height: '80px'
-			}}
+			className='bg-secondary w-full p-6 h-20 border flex justify-between z-10'
 		>
-			<Link
-				href='/'
-				style={{
-					display: 'flex',
-					justifyContent: 'center'
-				}}
-			>
-				<Image
-					unoptimized={true}
-					width='0'
-					height='0'
-					className='w-full h-auto'
-					style={{ width: '45px', height: '45px' }}
-					src={'/logo.svg'}
-					alt='logo'
-					priority={true}
-				/>
-			</Link>
+		<div></div>
 			<Search />
 			{/* <form>
 				<input

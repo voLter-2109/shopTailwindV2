@@ -1,11 +1,7 @@
-import Link from 'next/link'
+'use client'
+
+import NotFoundComponent from '../../component/custom-not-found/NotFoundComponent'
 
 export default function NotFound() {
-	return (
-		<div>
-			<h2>Not Found</h2>
-			<p>Could not find requested resource</p>
-			<Link href='/'>Return Home</Link>
-		</div>
-	)
+	return <NotFoundComponent />
 }

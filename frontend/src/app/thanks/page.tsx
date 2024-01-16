@@ -1,21 +1,16 @@
-'use client'
+import { NO_INDEX_PAGE } from '../../constant/app.constants'
+import Thanks from './Thanks'
+import type { Metadata } from 'next'
 
-import { NextPage } from 'next'
-import { useEffect } from 'react'
-import { useActions } from '../../hooks/useActions'
+export const metadata: Metadata = {
+	title: 'Thanks',
+	...NO_INDEX_PAGE
+}
 
-const Thanks: NextPage = () => {
-	const { reset } = useActions()
-
-	useEffect(() => {
-		reset()
-	}, [])
-
+export default function Page() {
 	return (
-		<div className='h-full w-full flex justify-center items-center'>
-			<h1 className='text-3xl'>Thanks</h1>
+		<div>
+			<Thanks />
 		</div>
 	)
 }
-
-export default Thanks

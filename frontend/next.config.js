@@ -18,3 +18,12 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+
+// async rewrites() {
+// 	return [
+// 		{
+// 			sourse: '/uploads/:path*',
+// 			destination: 'http://localhost:3000/uploads/:path*'
+// 		}
+// 	]
+// }

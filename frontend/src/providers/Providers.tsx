@@ -1,3 +1,4 @@
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { PropsWithChildren } from 'react'
@@ -17,12 +18,13 @@ const queryClient = new QueryClient({
 })
 
 export default function Providers({ children }: PropsWithChildren<unknown>) {
+	const isClient = typeof window !== 'undefined'
+
 	return (
 		<QueryClientProvider client={queryClient}>
 			<ReactQueryDevtools initialIsOpen={false} />
 			<PersistGate loading={null} persistor={persistor}>
 				<ReduxProvider>
-					{/* <span>Provider</span> */}
 					<AuthProvider>{children}</AuthProvider>
 				</ReduxProvider>
 			</PersistGate>

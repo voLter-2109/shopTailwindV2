@@ -1,8 +1,9 @@
+import ErrorComponent from '../error/Error'
+import Header from '../header/Header'
+import Sidebar from '../sidebar/Sidebar'
 import { usePathname } from 'next/navigation'
 import { FC, PropsWithChildren } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
-import Header from '../header/Header'
-import Sidebar from '../sidebar/Sidebar'
 
 const RootComponent: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	const pathname = usePathname()
@@ -15,16 +16,10 @@ const RootComponent: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	return (
 		<div>
 			<Header />
-			<div
-				className='grid '
-				style={{
-					gridTemplateColumns: '1fr 4fr',
-					height: 'calc(100vh - 5rem)'
-				}}
-			>
+			<div>
 				<Sidebar />
-				<main style={{ padding: '29px' }}>
-					<ErrorBoundary fallback={<div>Something went wrong</div>}>
+				<main className='p-7 pl-[20vw]'>
+					<ErrorBoundary fallback={<ErrorComponent />}>
 						{children}
 					</ErrorBoundary>
 				</main>

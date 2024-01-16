@@ -1,9 +1,11 @@
 'use client'
 
+import ErrorComponent from '../component/error/Error'
+
 export default function Error() {
 	return (
 		<>
-			<h1>Что то пошло не так...</h1>
+			<ErrorComponent />
 		</>
 	)
 }

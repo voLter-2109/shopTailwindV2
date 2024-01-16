@@ -1,15 +1,12 @@
-'use client'
-
-import { usePathname } from 'next/navigation'
+import Heading from '../../ui/heading/Heading'
 import { FC, PropsWithChildren } from 'react'
 
-const Test: FC<PropsWithChildren<unknown>> = ({ children }) => {
-	const pathname = usePathname()
-	// console.log(pathname)
+export const revalidete = 60
 
+const Test: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	return (
 		<div>
-			<span>hellow 2</span>
+			<Heading>{'<- Выбери категорию'}</Heading>
 			{children}
 		</div>
 	)

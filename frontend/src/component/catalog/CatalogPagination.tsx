@@ -22,7 +22,7 @@ const CatalogPagination: FC<{
 }> = ({ data, title }) => {
 	const { profile } = useProfile()
 	// console.log(data)
-	const [page, setPage] = useState(1)
+	const [page, setPage] = useState(0)
 
 	const [sortType, setSortType] = useState<EnumProductSort>(
 		EnumProductSort.HIGH_PRICE
@@ -36,7 +36,7 @@ const CatalogPagination: FC<{
 		['product', sortType, perPageProduct],
 		async () =>
 			await ProductService.getAll({
-				page,
+				page: page + 1,
 				perPage: perPageProduct,
 				sort: sortType
 			}),
@@ -44,13 +44,9 @@ const CatalogPagination: FC<{
 	)
 
 	useEffect(() => {
+		console.log('change page')
 		refetch()
-		// console.log(response.product.length)
 	}, [page, sortType])
-
-	// useEffect(() => {
-	// 	console.log(response.length)
-	// }, [response])
 
 	if (isLoading) return <Loader />
 
@@ -68,7 +64,7 @@ const CatalogPagination: FC<{
 			</div>
 			{response.product?.length ? (
 				<>
-					<div className='flex gap-10 flex-wrap' style={{ gap: '10px' }}>
+					<div className='flex gap-2 justify-between mb-12 flex-wrap '>
 						{response.product?.map((pr: IProductResponse) => {
 							// console.log(pr.id)
 							return <ProductItem key={pr.id} product={pr} profile={profile} />
@@ -78,13 +74,15 @@ const CatalogPagination: FC<{
 						<ReactPaginate
 							className='flex mx-auto'
 							pageClassName='mx-2'
-							activeClassName='border-x-2 border-primary w-5 text-center'
+							activeClassName='text-primary  w-5 text-center font-extrabold'
 							nextLabel='next >'
 							onClick={e => {
-								if (e.nextSelectedPage) setPage(+e.nextSelectedPage + 1)
+								//@ts-ignore
+								setPage(+e.nextSelectedPage)
 							}}
+							forcePage={page}
 							pageCount={Math.ceil(response.length / perPageProduct)}
-							previousLabel='< previous'
+							previousLabel='< prev'
 							renderOnZeroPageCount={null}
 						/>
 					</div>

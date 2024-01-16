@@ -1,6 +1,7 @@
 'use client'
 
 import cn from 'clsx'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { FC } from 'react'
@@ -18,16 +19,25 @@ const Sidebar: FC = () => {
 	// console.log(pathname)
 
 	return (
-		<aside
-			className='bg-secondary align-middle'
-			style={{
-				display: 'flex',
-				flexDirection: 'column',
-				justifyContent: 'space-between',
-				padding: '1.25rem 0',
-				height: 'calc(100vh - 80 px)'
-			}}
-		>
+		<aside className='bg-secondary align-middle fixed top-0 p-6 flex flex-col justify-between h-full w-[15vw]'>
+			<Link
+				href='/'
+				style={{
+					display: 'flex',
+					justifyContent: 'center'
+				}}
+			>
+				<Image
+					unoptimized={true}
+					width='0'
+					height='0'
+					className='w-full h-auto'
+					style={{ width: '45px', height: '45px' }}
+					src={'/logo.svg'}
+					alt='logo'
+					priority={true}
+				/>
+			</Link>
 			<div
 				style={{
 					display: 'flex',

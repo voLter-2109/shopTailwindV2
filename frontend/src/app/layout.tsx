@@ -1,27 +1,9 @@
 'use client'
 
-import type { Metadata } from 'next'
 import { FC, PropsWithChildren } from 'react'
 import RootComponent from '../component/root-component/RootComponent'
-import { getSiteUrl } from '../config/url.config'
-import { SITE_NAME } from '../constant/app.constants'
 import Providers from '../providers/Providers'
 import './global.css'
-
-export const metadata: Metadata = {
-	icons: {
-		icon: '/logo.svg'
-	},
-	title: {
-		absolute: SITE_NAME,
-		template: `%s | ${SITE_NAME}`
-	},
-	metadataBase: new URL(getSiteUrl()),
-	openGraph: {
-		type: 'website',
-		siteName: SITE_NAME
-	}
-}
 
 const RootLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 	// console.log(children)

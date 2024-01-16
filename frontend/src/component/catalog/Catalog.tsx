@@ -11,7 +11,7 @@ const Catalog: FC<{
 	products: IProductResponse[]
 	isLoading?: boolean
 	title?: string
-}> = ({ products, isLoading = false, title = 'Favorites roduct' }) => {
+}> = ({ products, isLoading = false, title = 'Page' }) => {
 	// console.log(products)
 	const { profile } = useProfile()
 	// console.log(products)

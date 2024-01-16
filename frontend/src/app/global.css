@@ -3,7 +3,7 @@
 @import 'tailwindcss/utilities';
 
 body {
-	@apply text-base bg-bg-color text-black;
+	@apply text-base bg-bg-color text-black overflow-x-hidden overscroll-x-auto;
 }
 
 .disabled {
@@ -20,5 +20,6 @@ body {
 
 .close-menu {
 	opacity: 0;
-	transform: scale(0.8);
+	transform: scale(0.8) translateX(1000px);
+	
 }
