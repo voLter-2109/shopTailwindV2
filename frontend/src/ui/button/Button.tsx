@@ -3,12 +3,14 @@ import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react'
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 	variantColor: 'dark' | 'light'
+	size?: 'sm' | 'md' | 'lg'
 }
 
 const Button: FC<PropsWithChildren<IButton>> = ({
 	children,
 	className,
 	variantColor,
+	size = 'md',
 	...rest
 }) => {
 	// console.log(className)
@@ -16,11 +18,12 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 		<button
 			{...rest}
 			className={cn(
-				'hover:scale-110 transition-all 0.3s',
-				'rounded-2xl font-semibold shadow-md px-12 py-2  text-center',
+				'btn',
 				{
-					'text-secondary bg-primary': variantColor == 'dark',
-					'text-primary bg-white': variantColor == 'light'
+					'btn-black': variantColor == 'dark',
+					'btn-light': variantColor == 'light',
+					'px-5 py-2 text-sm': size === 'sm',
+					'btn-large': size === 'lg'
 				},
 				className
 			)}

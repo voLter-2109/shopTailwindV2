@@ -1,14 +1,14 @@
 'use client'
 
+import { useActions } from '../../hooks/useActions'
+import { useAuth } from '../../hooks/useAuth'
+import { useCategory } from '../../hooks/useCategory'
+import { useProfile } from '../../hooks/useProfile'
 import cn from 'clsx'
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { FC } from 'react'
 import { FiLogOut } from 'react-icons/fi'
-import { useActions } from '../../hooks/useActions'
-import { useAuth } from '../../hooks/useAuth'
-import { useCategory } from '../../hooks/useCategory'
 
 const Sidebar: FC = () => {
 	const { user } = useAuth()
@@ -16,28 +16,10 @@ const Sidebar: FC = () => {
 	const pathname = usePathname()
 	const router = useRouter()
 	const { data } = useCategory()
-	// console.log(pathname)
+	const { profile } = useProfile()
 
 	return (
-		<aside className='bg-secondary align-middle fixed top-0 p-6 flex flex-col justify-between h-full w-[15vw]'>
-			<Link
-				href='/'
-				style={{
-					display: 'flex',
-					justifyContent: 'center'
-				}}
-			>
-				<Image
-					unoptimized={true}
-					width='0'
-					height='0'
-					className='w-full h-auto'
-					style={{ width: '45px', height: '45px' }}
-					src={'/logo.svg'}
-					alt='logo'
-					priority={true}
-				/>
-			</Link>
+		<aside className='bg-secondary align-middle fixed top-0 p-6 flex flex-col justify-between pt-28 h-full w-[15vw]'>
 			<div
 				style={{
 					display: 'flex',
@@ -70,6 +52,7 @@ const Sidebar: FC = () => {
 						)
 					})}
 			</div>
+
 			<Link
 				href='/order'
 				className={cn(
@@ -79,7 +62,7 @@ const Sidebar: FC = () => {
 			>
 				My order
 			</Link>
-			{!!user && (
+			{!!user ? (
 				<button
 					style={{ justifyContent: 'center' }}
 					className='text-white flex items-center '
@@ -93,6 +76,8 @@ const Sidebar: FC = () => {
 					<FiLogOut />
 					<span className='ml-2'> Logout</span>
 				</button>
+			) : (
+				<div></div>
 			)}
 		</aside>
 	)

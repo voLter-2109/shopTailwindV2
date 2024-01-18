@@ -2,15 +2,11 @@ import { IProductResponse } from '../../types/product.interface'
 import { IFullUser } from '../../types/user.interface'
 import { convertPrice } from '../../utils/convertPrice'
 import AddToCardButton from './AddToCArtButton'
+import FavoriteButton from './FavoriteButton'
 import ProductRating from './ProductRating'
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
-
-const DynamicFavoritButton = dynamic(() => import('./FavoriteButton'), {
-	ssr: false
-})
 
 const ProducItem: FC<{ product: IProductResponse; profile: IFullUser }> = ({
 	product,
@@ -20,18 +16,18 @@ const ProducItem: FC<{ product: IProductResponse; profile: IFullUser }> = ({
 		return product.image[0]
 	}
 	return (
-		<div>
-			<div className='bg-[rgb(15,23,42)] rounded-xl relative overflow-hidden w-[220px] h-[150px]'>
-				<div className='absolute  top-3 left-3 z-10 bg-white p-1 rounded-lg'>
-					<DynamicFavoritButton productId={product.id} profile={profile} />
+		<div className='border border-black/25 shadow-2xl rounded-xl  p-2'>
+			<div
+				className='bg-[rgb(15,23,42)] rounded-xl
+			 relative  w-[220px] h-[150px] overflow-hidden'
+			>
+				<div className='absolute  top-1 right-1 z-10 bg-white p-1  rounded-xl'>
+					<FavoriteButton productId={product.id} profile={profile} />
 					<AddToCardButton product={product} />
 				</div>
 				<Link href={`/product/${product.slug}`}>
 					<Image
-						style={{
-							width: '220px',
-							maxHeight: '150px'
-						}}
+						className='w-[220px] h-[150px] block mx-auto'
 						width='0'
 						height='0'
 						priority
@@ -51,7 +47,7 @@ const ProducItem: FC<{ product: IProductResponse; profile: IFullUser }> = ({
 			>
 				{product.category.name}
 			</Link>
-			<ProductRating product={product} />
+			<ProductRating product={product} isText />
 			<div className='text-2xl font-semibold'>
 				{convertPrice(product.price)}
 			</div>

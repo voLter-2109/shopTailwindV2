@@ -24,10 +24,10 @@ const persistConfig = {
 	storage
 }
 
-const isClient = typeof window !== 'undefined'
-if (isClient) {
-	console.log('isClient')
-}
+// const isClient = typeof window !== 'undefined'
+// if (isClient) {
+// 	console.log('isClient')
+// }
 
 const rootReducer = combineReducers({
 	// cart: cartSlice.reducer,

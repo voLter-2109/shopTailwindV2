@@ -1,15 +1,20 @@
+import { IProductResponse } from '../../types/product.interface'
 import { FC, useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
-import { IProductResponse } from '../../types/product.interface'
 
-const ProductRating: FC<{ product: IProductResponse }> = ({ product }) => {
+interface IProductRating {
+	product: IProductResponse
+	isText?: boolean
+}
+
+const ProductRating: FC<IProductRating> = ({ product, isText = false }) => {
 	const [rating, setRating] = useState<number>(
 		product.reviews.reduce((acc, review) => acc + review.rating, 0) / 2 || 0
 	)
 
 	return (
 		<div className='mb-2'>
-			<span className=''>
+			<div className='flex flex-row items-end'>
 				<Rating
 					readonly
 					initialValue={rating}
@@ -20,16 +25,11 @@ const ProductRating: FC<{ product: IProductResponse }> = ({ product }) => {
 					allowFraction
 					transition
 				/>
-				<span
-					style={{
-						fontSize: '15px',
-						color: '#FFBC00'
-					}}
-				>
-					{rating}
-				</span>
-			</span>
-			<span className='ml-2 text-sm'>{product.reviews.length} rev.</span>
+				<span className='font-semibold text-xs'>{rating}</span>
+			</div>
+			{isText && (
+				<span className=''>Кол-во отзывов: {product.reviews.length}</span>
+			)}
 		</div>
 	)
 }

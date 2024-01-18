@@ -44,7 +44,7 @@ const CatalogPagination: FC<{
 	)
 
 	useEffect(() => {
-		console.log('change page')
+		// console.log('change page')
 		refetch()
 	}, [page, sortType])
 

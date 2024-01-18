@@ -1,24 +1,26 @@
 'use client'
 
-import { useMutation } from '@tanstack/react-query'
-import cn from 'clsx'
-import { useRouter } from 'next/navigation'
-import { FC } from 'react'
-import { RiShoppingCartLine } from 'react-icons/ri'
+import { useActions } from '../../hooks/useActions'
 import { useCart } from '../../hooks/useCart'
 import { useOutside } from '../../hooks/useOutside'
 import OrderService from '../../services/order.service'
 import { ICartItem } from '../../types/cart.interface'
 import { convertPrice } from '../../utils/convertPrice'
-import Button from '../button/Button'
 import { SquareButton } from '../button/SquareButton'
 import style from './Cart.module.scss'
 import { CartItem } from './CartItem'
+import { useMutation } from '@tanstack/react-query'
+import cn from 'clsx'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { FC } from 'react'
+import { RiShoppingCartLine } from 'react-icons/ri'
 
 export const Cart: FC = () => {
 	const { isShow, setIsShow, ref } = useOutside(false)
 	const { items, total } = useCart()
 	const { push } = useRouter()
+	const { reset } = useActions()
 
 	const { mutate } = useMutation(
 		['create order andpayment'],
@@ -34,8 +36,8 @@ export const Cart: FC = () => {
 			}),
 		{
 			onSuccess({ data }) {
+				reset()
 				push(data.confirmation.confirmation_url)
-				// .then(() => reset())
 			}
 		}
 	)
@@ -53,8 +55,9 @@ export const Cart: FC = () => {
 			<div
 				className={cn(
 					'absolute top-[4.2rem] w-96 -left-[20.5rem]',
-					'rounded-md bg-secondary rounded-x1 px-5 py-3 text-sm menu z-20 text-white transition-all  delay-200',
-					isShow ? 'open-menu' : 'close-menu'
+					'rounded-md bg-secondary rounded-x1 px-5 py-3 text-sm menu z-20 text-white',
+					'transition-all duration-700 ease-in-out',
+					isShow ? 'translate-x-0' : 'translate-x-[1000px]'
 				)}
 			>
 				<div className='font-bold text-center text-2xl mb-5 text-primary'>
@@ -76,13 +79,13 @@ export const Cart: FC = () => {
 					<div> {convertPrice(total)}</div>
 				</div>
 				<div className='text-center'>
-					<Button
-						variantColor='light'
-						className='btn-link mt-5 md-2 transition  hover:scale-110'
-						onClick={() => mutate()}
-					>
-						buy
-					</Button>
+					{!!items.length && (
+						<div className='mt-7 md-5'>
+							<Link className={'btn btn-black'} href={'/checkout'}>
+								go to checkout
+							</Link>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

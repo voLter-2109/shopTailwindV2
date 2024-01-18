@@ -36,7 +36,7 @@ const AuthService = {
 		)
 
 		if (response.data?.accessToken) saveToStorage(response.data)
-		console.log(response.data)
+		// console.log(response.data)
 
 		return response
 	}

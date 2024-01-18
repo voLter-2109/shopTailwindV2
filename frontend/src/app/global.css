@@ -15,11 +15,12 @@ body {
 
 .open-menu {
 	opacity: 1;
-	transform: scale(1);
+	transform: scale(1) translateX(0);
 }
 
 .close-menu {
 	opacity: 0;
-	transform: scale(0.8) translateX(1000px);
+	transform: scale(0.8) translateX(40px);
 	
 }
+

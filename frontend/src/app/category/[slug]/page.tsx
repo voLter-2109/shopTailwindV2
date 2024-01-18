@@ -15,13 +15,18 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 	const slug = params.slug
 	const { product } = await getData(params.slug)
-
+	console.log(product)
 	return {
-		title: SITE_NAME + ' - ' + product[0].category.name,
+		title:
+			SITE_NAME +
+			' - ' +
+			(product.length > 0 ? product[0].category.name : 'category'),
 		openGraph: {
 			title: SITE_NAME + slug,
-			images: product[0].image,
-			description: `Lorem ipsum dolor sit ${product[0].category.name}`
+			images: product.length > 0 ? product[0].image : '/logo.svg',
+			description: `Lorem ipsum dolor sit ${
+				product.length > 0 ? product[0].category.name : ''
+			}`
 		}
 	}
 }

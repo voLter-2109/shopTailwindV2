@@ -8,7 +8,7 @@ export const useCategory = () => {
 	// console.log(user)
 	const { data } = useQuery(['getCategory'], () => CategoryService.getAll(), {
 		select: ({ data }) => data,
-		enabled: !!user
+		// enabled: !!user
 	})
 	return { data: data || ([] as ICategoryResponse[]) }
 }
