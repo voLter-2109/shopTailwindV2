@@ -18,12 +18,11 @@ const RootComponent: FC<PropsWithChildren<unknown>> = ({ children }) => {
 			<Header />
 			<div>
 				<Sidebar />
-				<main className='p-7 pl-[20vw]'>
+				<main className='p-7 '>
 					<ErrorBoundary fallback={<ErrorComponent />}>
 						{children}
 					</ErrorBoundary>
 				</main>
-				{/* <div id='modal'></div> */}
 			</div>
 		</div>
 	)

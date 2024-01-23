@@ -49,4 +49,4 @@ export type TypeProductDataFilters = {
 	categoryId?: string
 }
 
-export const perPageProduct = 10
+export const perPageProduct = 8

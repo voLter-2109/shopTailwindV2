@@ -35,6 +35,7 @@ const CatalogPagination: FC<{
 	} = useQuery(
 		['product', sortType, perPageProduct],
 		async () =>
+		
 			await ProductService.getAll({
 				page: page + 1,
 				perPage: perPageProduct,

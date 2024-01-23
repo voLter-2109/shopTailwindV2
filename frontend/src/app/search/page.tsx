@@ -1,16 +1,16 @@
 'use client'
 
+import Catalog from '../../component/catalog/Catalog'
+import ProductService from '../../services/product/product.service'
 import { useQuery } from '@tanstack/react-query'
 import { NextPage } from 'next'
 import { useSearchParams } from 'next/navigation'
-import Catalog from '../../component/catalog/Catalog'
-import ProductService from '../../services/product/product.service'
 
 const SearchPage: NextPage = () => {
 	const searchParams = useSearchParams()
-	const dataSearch = searchParams.get('term')
+	const dataSearch = searchParams.get('searchTerm')
 
-	const { data } = useQuery(['search products', dataSearch], () =>
+	const { data, isLoading } = useQuery(['search products', dataSearch], () =>
 		ProductService.getAll({
 			searchTerm: dataSearch as string
 		})
@@ -20,7 +20,8 @@ const SearchPage: NextPage = () => {
 	return (
 		<Catalog
 			products={data?.product || []}
-			title={`Search result: ${dataSearch}`}
+			isLoading={isLoading}
+			title={`Search result`}
 		></Catalog>
 	)
 }

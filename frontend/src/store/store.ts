@@ -1,3 +1,6 @@
+import { carouselSlice } from './carousel/carousel.slice'
+import { cartSlice } from './cart/cart.slice'
+import { userSlice } from './user/user.slice'
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import {
@@ -11,8 +14,6 @@ import {
 	persistStore
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { cartSlice } from './cart/cart.slice'
-import { userSlice } from './user/user.slice'
 
 // const persistConfig = {
 // 	key: 'root',
@@ -33,7 +34,8 @@ const rootReducer = combineReducers({
 	// cart: cartSlice.reducer,
 	// carousel: carouselSlice.reducer,
 	user: userSlice.reducer,
-	cart: cartSlice.reducer
+	cart: cartSlice.reducer,
+	carousel: carouselSlice.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

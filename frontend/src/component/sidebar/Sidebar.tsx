@@ -3,84 +3,61 @@
 import { useActions } from '../../hooks/useActions'
 import { useAuth } from '../../hooks/useAuth'
 import { useCategory } from '../../hooks/useCategory'
-import { useProfile } from '../../hooks/useProfile'
+import { useIsAdminPanel } from '../../hooks/useIsAdminPanel'
+import { ADMIN_MENU } from './admin-menu.data'
+import { convertToMenuItems } from './convert-to-menu-item'
 import cn from 'clsx'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { FC } from 'react'
-import { FiLogOut } from 'react-icons/fi'
 
 const Sidebar: FC = () => {
 	const { user } = useAuth()
 	const { logout } = useActions()
-	const pathname = usePathname()
 	const router = useRouter()
 	const { data } = useCategory()
-	const { profile } = useProfile()
+	const { isAdminPanel, pathname } = useIsAdminPanel()
 
 	return (
-		<aside className='bg-secondary align-middle fixed top-0 p-6 flex flex-col justify-between pt-28 h-full w-[15vw]'>
-			<div
-				style={{
-					display: 'flex',
-					flexDirection: 'column',
-					color: 'white',
-					textAlign: 'center'
-				}}
-			>
-				{!!data &&
-					data.map((slug: any) => {
-						// console.log(slug)
+		<aside className='p-6 z-50'>
+			<div className='flex flex-col text-center'>
+				<span className='my-4 font-bold text-2xl'>
+					{isAdminPanel ? 'Menu:' : 'Categories:'}
+				</span>
+				<ul>
+					{(isAdminPanel ? ADMIN_MENU : convertToMenuItems(data)).map(item => {
 						return (
-							<Link
-								key={slug.id}
-								href={
-									pathname.includes('category')
-										? slug.slug
-										: `category/${slug.slug}`
-								}
-								className={cn('hover:text-red-500')}
-							>
-								<span
-									className={cn({
-										'text-primary': pathname === `/category/${slug.slug}`
-									})}
+							<li key={item.id}>
+								<Link
+									href={`${item.href}`}
+									className={cn(
+										'hover:text-red-500 text-primary',
+										pathname === item.href && 'font-extrabold'
+									)}
 								>
-									{slug.name}
-								</span>
-							</Link>
+									{item.label}
+								</Link>
+							</li>
 						)
 					})}
+				</ul>
 			</div>
-
-			<Link
-				href='/order'
-				className={cn(
-					'text-center ',
-					pathname.includes('/order') ? 'text-primary' : 'text-white'
-				)}
-			>
-				My order
-			</Link>
-			{!!user ? (
-				<button
-					style={{ justifyContent: 'center' }}
-					className='text-white flex items-center '
-					{...{
-						onClick: () => {
-							logout()
-							router.replace('/auth')
-						}
-					}}
-				>
-					<FiLogOut />
-					<span className='ml-2'> Logout</span>
-				</button>
-			) : (
-				<div></div>
-			)}
 		</aside>
 	)
 }
 
 export default Sidebar
+
+// href={
+// 	pathname.includes('category')
+// 		? item.slug
+// 		: `category/${slug.slug}`
+// }
+
+{
+	/* <span
+	className={cn({
+'font-extrabold': pathname === `/category/${item.href}`
+})}
+> */
+}

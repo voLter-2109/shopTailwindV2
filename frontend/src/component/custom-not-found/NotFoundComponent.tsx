@@ -1,11 +1,11 @@
-"use client"
+'use client'
 
 import Heading from '../../ui/heading/Heading'
 import Link from 'next/link'
 
 export default function NotFoundComponent() {
 	return (
-		<div className='w-full h-full text-center '>
+		<div className='w-full pt-20 text-center my-auto '>
 			<Heading className='mb-5'>Page not Found</Heading>
 
 			<Link

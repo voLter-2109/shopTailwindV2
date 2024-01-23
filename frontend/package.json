@@ -34,11 +34,15 @@
 		"react-paginate": "^8.2.0",
 		"react-redux": "^8.1.2",
 		"react-simple-star-rating": "^5.1.7",
+		"react-slick": "^0.29.0",
+		"react-transition-group": "^4.4.5",
 		"redux-persist": "^6.0.0",
 		"sass": "^1.68.0",
+		"slick-carousel": "^1.8.1",
 		"typescript": "5.2.2"
 	},
 	"devDependencies": {
+		"@types/react-slick": "^0.23.13",
 		"@types/redux-persist": "^4.3.1",
 		"autoprefixer": "^10.4.15",
 		"postcss": "^8.4.29",

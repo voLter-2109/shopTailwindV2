@@ -1,3 +1,7 @@
+body {
+	font-family: var(--font-roboto), sans-serif;
+}
+
 .btn {
 	@apply rounded-xl px-10 py-2 font-medium shadow 
 	transition duration-300 ease-in-out;

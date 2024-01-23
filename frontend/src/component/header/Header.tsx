@@ -46,7 +46,8 @@ const Header: FC = () => {
 	}
 
 	return (
-		<header className='bg-secondary w-full px-16 items-center h-20 border flex justify-between fixed z-20'>
+		<header className=' w-full shadow-2xl px-16 items-center 
+		h-16 border border-y-primary flex justify-between z-20'>
 			<Link
 				href='/'
 				style={{
@@ -59,14 +60,14 @@ const Header: FC = () => {
 						unoptimized={true}
 						width='0'
 						height='0'
-						className='w-full h-auto'
+						className='w-full  bg-black rounded-3xl h-14 p-2'
 						style={{ width: '45px', height: '45px' }}
 						src={'/logo.svg'}
 						alt='logo'
 						priority={true}
 					/>
 				) : (
-					<h2 className='text-3xl font-semibold text-white'>Admin Panel</h2>
+					<h2 className='text-3xl font-semibold text-black'>Admin Panel</h2>
 				)}
 			</Link>
 			<Search />
@@ -97,17 +98,31 @@ const Header: FC = () => {
 				{user?.isAdmin && !isAdminPanel && (
 					<Link
 						href={'/admin'}
-						className='hover:text-primary transition-colors 
-					duration-200 text-white inline-block text-lg'
+						className='text-primary transition-all 
+					duration-300 hover:scale-110'
 					>
 						<MdOutlineAdminPanelSettings size={29} />
 					</Link>
 				)}
-				<Link href='/favorites' className='text-white'>
+				<Link
+					href='/favorites'
+					className='text-primary transition-all 
+					duration-300 hover:scale-110'
+				>
 					<AiOutlineHeart size={28} />
 				</Link>
 				<Cart />
-				<HeaderProfile />
+				{user ? (
+					<HeaderProfile />
+				) : (
+					<Link
+						href={'/auth'}
+						className='text-primary transition-all 
+					duration-300 hover:scale-110'
+					>
+						Войти
+					</Link>
+				)}
 			</div>
 		</header>
 	)
