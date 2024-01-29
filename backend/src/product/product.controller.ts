@@ -41,6 +41,11 @@ export class ProductController {
 		return this.productService.byCategory(categorySlug);
 	}
 
+	@Get('by-category-lenght/:categorySlug')
+	async getProductByCategoryLengh(@Param('categorySlug') categorySlug: string) {
+		return this.productService.byCategoryLength(categorySlug);
+	}
+
 	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
 	@Auth('admin')

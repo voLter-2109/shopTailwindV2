@@ -1,0 +1,25 @@
+.explorer {
+	display: flex;
+
+	> aside {
+		width: 0;
+		white-space: nowrap;
+		opacity: 0;
+
+		transition: all 600ms ease-in;
+	}
+
+	> section {
+		width: 100%;
+		transition: all 600ms ease-in;
+	}
+
+	&.filterOpened {
+		gap: 20px;
+
+		> aside {
+			width: 33%;
+			opacity: 1;
+		}
+	}
+}

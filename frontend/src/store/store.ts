@@ -1,5 +1,6 @@
 import { carouselSlice } from './carousel/carousel.slice'
 import { cartSlice } from './cart/cart.slice'
+import { filterSlice } from './filters/filter.slice'
 import { userSlice } from './user/user.slice'
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
@@ -35,7 +36,8 @@ const rootReducer = combineReducers({
 	// carousel: carouselSlice.reducer,
 	user: userSlice.reducer,
 	cart: cartSlice.reducer,
-	carousel: carouselSlice.reducer
+	carousel: carouselSlice.reducer,
+	filter: filterSlice.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

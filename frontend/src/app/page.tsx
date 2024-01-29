@@ -1,9 +1,8 @@
 import HomeComponent from '../component/home/HomePage'
 import { getSiteUrl } from '../config/url.config'
-import { SITE_NAME } from '../constant/app.constants'
+import { SITE_NAME, perPageProduct } from '../constant/app.constants'
 import ProductService from '../services/product/product.service'
-import { EnumProductSort, perPageProduct } from '../types/product.interface'
-import Loader from '../ui/loader/Loader'
+import { EnumProductSort } from '../types/product.interface'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -33,13 +32,17 @@ async function getProducts() {
 	return data
 }
 
+// const HomePage = async () => {
+// 	const products = await getProducts()
+// 	// console.log(products)
+
+// 	if (!products) return <Loader />
+
+// 	return <HomeComponent products={products} />
+// }
+
 const HomePage = async () => {
-	const products = await getProducts()
-	// console.log(products)
-
-	if (!products) return <Loader />
-
-	return <HomeComponent products={products} />
+	return <HomeComponent />
 }
 
 export default HomePage

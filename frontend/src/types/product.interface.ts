@@ -22,6 +22,9 @@ export interface IProductPagination {
 	product: IProductResponse[]
 	length: number
 }
+export interface ICategoryLenghtResponse {
+	length: number
+}
 
 export interface IProductData {
 	name: string
@@ -49,4 +52,6 @@ export type TypeProductDataFilters = {
 	categoryId?: string
 }
 
-export const perPageProduct = 8
+export type TypeParamsFilter = {
+	searchParams: TypeProductDataFilters
+}

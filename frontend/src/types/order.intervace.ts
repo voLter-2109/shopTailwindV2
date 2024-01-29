@@ -17,3 +17,13 @@ export interface IOrderResponse {
 	status: EnumOrderStatus
 	total: number
 }
+
+
+export type TypeDataPlaceOrder = {
+	status?: EnumOrderStatus
+	items: {
+		quantity: number
+		productId: number
+		price: number
+	}[]
+}

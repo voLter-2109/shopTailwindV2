@@ -22,7 +22,9 @@ const ProducItem: FC<{ product: IProductResponse; profile: IFullUser }> = ({
 			 relative  w-[220px] h-[150px] overflow-hidden'
 			>
 				<div className='absolute  top-1 right-1 z-10 bg-white p-1  rounded-xl'>
-					<FavoriteButton productId={product.id} profile={profile} />
+					{profile && (
+						<FavoriteButton productId={product.id} profile={profile} />
+					)}
 					<AddToCardButton product={product} />
 				</div>
 				<Link href={`/product/${product.slug}`}>

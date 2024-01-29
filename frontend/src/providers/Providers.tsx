@@ -10,7 +10,7 @@ import AuthProvider from './auth-provider/AuthProvider'
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
-			refetchOnWindowFocus: true,
+			refetchOnWindowFocus: false,
 			refetchOnMount: false,
 			staleTime: 1000 * 60 * 10 // 10 minutes
 		}

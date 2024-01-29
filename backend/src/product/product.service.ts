@@ -25,11 +25,13 @@ export class ProductService {
 		const filters = this.createFilter(dto);
 		const product = await this.prisma.product.findMany({
 			where: filters,
-			orderBy: this.getSortOption(dto.sort),
+			orderBy: dto.sort ? this.getSortOption(dto.sort) : { price: 'desc' },
 			skip: skip,
 			take: perPage,
 			select: productReturnObject
 		});
+
+		// console.log(product);
 
 		return {
 			product,
@@ -41,6 +43,7 @@ export class ProductService {
 
 	private createFilter(dto: GetAllProductDto): Prisma.ProductWhereInput {
 		const filters: Prisma.ProductWhereInput[] = [];
+		console.log('dto', dto);
 
 		if (dto.searchTerm) filters.push(this.getSearchTermFilter(dto.searchTerm));
 		if (dto.ratings)
@@ -157,6 +160,7 @@ export class ProductService {
 	}
 
 	async bySlug(slug: string) {
+		console.log("get Product by slug")
 		const product = await this.prisma.product.findUnique({
 			where: {
 				slug: slug
@@ -170,6 +174,7 @@ export class ProductService {
 	}
 
 	async byCategory(categorySlug: string) {
+		console.log("get Product by category" + categorySlug);
 		const product = await this.prisma.product.findMany({
 			where: {
 				category: {
@@ -183,6 +188,35 @@ export class ProductService {
 
 		return product;
 	}
+
+	async byCategoryLength(categorySlug: string) {
+		console.log("get Product by category lenght" + categorySlug);
+		const lenght = await this.prisma.product.count({
+					where: {
+						category: {
+							slug: categorySlug
+						}
+					}
+				})
+
+		if (!lenght) throw new NotFoundException('Product not found');
+
+		return lenght;
+	}
+
+
+		// return {
+		
+		// 	length: await this.prisma.product.count({
+		// 		where: {
+		// 			category: {
+		// 				slug: categorySlug
+		// 			}
+		// 		}
+		// 	})
+			
+		
+	
 
 	async getSimilar(id: number) {
 		const currentProduct = await this.byId(id);

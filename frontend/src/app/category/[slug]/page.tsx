@@ -14,37 +14,44 @@ export async function generateMetadata(
 	parent: ResolvingMetadata
 ): Promise<Metadata> {
 	const slug = params.slug
-	const { product } = await getData(params.slug)
-	// console.log(product)
+	const { lenght } = await getDataLenght(params.slug)
+
 	return {
 		title:
-			SITE_NAME +
-			' - ' +
-			(product.length > 0 ? product[0].category.name : 'category'),
+			SITE_NAME + ' - ' + (lenght && +lenght > 0 ? params.slug : 'category'),
 		openGraph: {
-			title: SITE_NAME + slug,
-			images: product.length > 0 ? product[0].image : '/logo.svg',
+			title: SITE_NAME + ' ' + slug,
+			images: '/logo.svg',
 			description: `Lorem ipsum dolor sit ${
-				product.length > 0 ? product[0].category.name : ''
+				lenght && +lenght > 0 ? params.slug : ''
 			}`
 		}
 	}
 }
 
+export const getDataLenght = async (slug: string) => {
+	const { data: lenght } = await ProductService.getByCategoryLenght(slug)
+	console.log(lenght)
+	return {
+		lenght
+	}
+}
+
 export const getData = async (slug: string) => {
-	const { data: product } = await ProductService.getByCategory(slug)
+	const { data: products } = await ProductService.getByCategory(slug)
 
 	return {
-		product
+		products
 	}
 }
 
 const CategoryPage: NextPage<Props> = async ({ params }) => {
-	const { product } = await getData(params.slug)
+	const { products } = await getData(params.slug)
 
+	console.log(params)
 	return (
 		<ErrorBoundary fallback={<ErrorComponent />}>
-			<Catalog products={product || []} title={product[0]?.category.name} />
+			<Catalog products={products} title={params.slug} />
 		</ErrorBoundary>
 	)
 }

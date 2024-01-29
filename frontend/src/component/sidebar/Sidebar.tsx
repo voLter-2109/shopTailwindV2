@@ -41,6 +41,7 @@ const Sidebar: FC = () => {
 						)
 					})}
 				</ul>
+				<Link href="/explorer">explorer</Link>
 			</div>
 		</aside>
 	)

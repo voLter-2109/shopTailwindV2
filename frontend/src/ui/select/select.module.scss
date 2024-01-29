@@ -1,0 +1,49 @@
+.select {
+	position: relative;
+	width: max-content;
+
+	> button {
+		display: flex;
+		align-items: center;
+
+		> b {
+			margin-right: 8px;
+			font-weight: 600;
+		}
+
+		> svg {
+			margin-left: 16px;
+		}
+	}
+
+	> ul {
+		position: absolute;
+		left: 0;
+		z-index: 10;
+		width: max-content;
+		top: calc(100% + 1rem);
+
+		> li {
+			z-index: 40;
+			margin-bottom: 12px;
+			display: block;
+			width: 100%;
+			border-radius: 8px;
+			background-color: white;
+			padding: 8px 28px;
+			text-align: center;
+
+			&:hover:not(&.active) {
+				background-color: rgb(255 153 2 / 1);
+				color: rgb(255 255 255 / 1);
+			}
+
+			&.active {
+				> button {
+					text-decoration-line: underline;
+					color: rgb(255 153 2 / 1) orange;
+				}
+			}
+		}
+	}
+}

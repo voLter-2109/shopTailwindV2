@@ -1,5 +1,6 @@
 import instanse from '../../api/api.interceptor'
 import {
+	ICategoryLenghtResponse,
 	IProductData,
 	IProductPagination,
 	IProductResponse,
@@ -16,7 +17,7 @@ const ProductService = {
 			url: PRODUCT,
 			params: queryData
 		})
-		// console.log(data)
+		console.log(data.length)
 		return data
 	},
 
@@ -27,16 +28,25 @@ const ProductService = {
 		})
 	},
 	async getBySlug(slug: string) {
-		return instanse<IProductData>({
+		const { data } = await instanse<IProductData>({
 			method: 'GET',
 			url: `${PRODUCT}/by-slug/${slug}`
 		})
+
+		return data
 	},
 
 	async getByCategory(categorySlug: string) {
 		return instanse<IProductResponse[]>({
 			method: 'GET',
 			url: `${PRODUCT}/by-category/${categorySlug}`
+		})
+	},
+
+	async getByCategoryLenght(categorySlug: string) {
+		return instanse<ICategoryLenghtResponse>({
+			method: 'GET',
+			url: `${PRODUCT}/by-category-lenght/${categorySlug}`
 		})
 	},
 

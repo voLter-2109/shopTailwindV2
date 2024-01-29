@@ -7,3 +7,5 @@ export const NO_INDEX_PAGE = {
 		follow: false
 	}
 }
+
+export const perPageProduct = 8
