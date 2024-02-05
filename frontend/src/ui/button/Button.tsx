@@ -18,12 +18,12 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 		<button
 			{...rest}
 			className={cn(
-				'btn',
+				'rounded-xl px-10 py-2 font-medium shadow hover:shadow-2xl transition duration-300 ease-in-out',
 				{
-					'btn-black': variantColor == 'dark',
-					'btn-light': variantColor == 'light',
+					'bg-primary text-white': variantColor == 'dark',
+					'bg-white text-primary': variantColor == 'light',
 					'px-5 py-2 text-sm': size === 'sm',
-					'btn-large': size === 'lg'
+					'px-12 py-4 text-xle': size === 'lg'
 				},
 				className
 			)}

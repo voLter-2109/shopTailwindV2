@@ -1,0 +1,22 @@
+.range {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+
+	> input {
+		border-radius: 8px;
+		border: 1px solid gray;
+		padding: 9px 16px;
+		outline: 2px solid transparent;
+		outline-offset: 2px;
+		transition: all 0.3s ease-in;
+
+		&::placeholder {
+			color: rgb(209 213 219 /1);
+		}
+
+		&:focus {
+			border-color: rgb(255 153 2/1);
+		}
+	}
+}

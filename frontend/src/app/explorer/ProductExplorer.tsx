@@ -6,6 +6,7 @@ import ProductService from '../../services/product/product.service'
 import Button from '../../ui/button/Button'
 import Heading from '../../ui/heading/Heading'
 import styles from './ProductExplorer.module.scss'
+import Filters from './filters/Filters'
 import Pagination from './pagination/Pagination'
 import SortDropDown from './sort/SortDropDown'
 import { useFilters } from './useFilters'
@@ -36,7 +37,7 @@ const ProductExplorer: FC = () => {
 				<SortDropDown />
 			</div>
 			<Button
-				variantColor='light'
+				variantColor='dark'
 				onClick={() => setIsFilterOpen(!isFilterOpen)}
 				className='mb-7'
 			>
@@ -44,7 +45,9 @@ const ProductExplorer: FC = () => {
 			</Button>
 
 			<div className={cn(styles.explorer, isFilterOpen && styles.filterOpened)}>
-				<aside>"filter"</aside>
+				<aside>
+					<Filters />
+				</aside>
 				<section>
 					{data?.product && (
 						<>

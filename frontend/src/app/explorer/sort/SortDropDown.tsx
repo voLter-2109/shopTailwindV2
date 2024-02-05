@@ -4,10 +4,10 @@ import { SORT_SELECT_DATA } from './sort-select'
 import { useFilters } from 'explorer/useFilters'
 
 const SortDropDown = () => {
-	const { isFilterUpdated, queryParams, updateQueryParams } = useFilters()
+	const { queryParams, updateQueryParams } = useFilters()
 
 	return (
-		<div className='text-right z-10'>
+		<div className='text-right z-20'>
 			<Select<EnumProductSort>
 				data={SORT_SELECT_DATA}
 				onChange={value => {

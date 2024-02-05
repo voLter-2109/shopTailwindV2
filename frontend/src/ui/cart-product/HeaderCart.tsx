@@ -6,6 +6,7 @@ import { useOutside } from '../../hooks/useOutside'
 import OrderService from '../../services/order.service'
 import { ICartItem } from '../../types/cart.interface'
 import { convertPrice } from '../../utils/convertPrice'
+import Button from '../button/Button'
 import { SquareButton } from '../button/SquareButton'
 import style from './Cart.module.scss'
 import { CartItem } from './CartItem'
@@ -80,11 +81,20 @@ export const Cart: FC = () => {
 				</div>
 				<div className='text-center'>
 					{!!items.length && (
-						<div className='mt-7 md-5'>
-							<Link className={'btn btn-black'} href={'/checkout'}>
-								go to checkout
-							</Link>
-						</div>
+						<>
+							<div className='mt-7 md-5'>
+								<Link className={'btn btn-black'} href={'/checkout'}>
+									go to checkout
+								</Link>
+							</div>
+							<Button
+								variantColor='light'
+								className='btn-link mt-5 md-2 transition  hover:scale-110'
+								onClick={() => mutate()}
+							>
+								buy
+							</Button>
+						</>
 					)}
 				</div>
 			</div>

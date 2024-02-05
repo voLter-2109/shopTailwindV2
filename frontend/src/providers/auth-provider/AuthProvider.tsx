@@ -31,9 +31,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 	}, [pathname])
 
-	// useEffect(() => {
-	// 	if (!user) router.replace('/auth')
-	// }, [user])
+	useEffect(() => {
+		if (!user) router.replace('/auth')
+	}, [user])
 
 	const isProtectedRouter = protectedRouters.some(
 		router => pathname?.startsWith(router)

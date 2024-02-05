@@ -1,0 +1,22 @@
+.checkbox {
+	display: flex;
+	align-items: center;
+
+	> span:first-child {
+		height: 20px;
+		width: 20px;
+		border-radius: 4px;
+		border: 1px solid rgb(255 153 2 /1);
+		background-color: transparent;
+		transition: all 0.3s ease-in-out;
+
+		&.active {
+			border-color: rgb(255 153 2 /1);
+			background-color: rgb(255 153 2 /1);
+		}
+	}
+
+	> span:last-child {
+		margin-left: 16px;
+	}
+}
