@@ -25,7 +25,7 @@ export class ProductService {
 		const filters = this.createFilter(dto);
 		const product = await this.prisma.product.findMany({
 			where: filters,
-			
+
 			orderBy: dto.sort ? this.getSortOption(dto.sort) : { price: 'desc' },
 			skip: skip,
 			take: perPage,
@@ -55,7 +55,7 @@ export class ProductService {
 
 		if (dto.searchTerm) filters.push(this.getSearchTermFilter(dto.searchTerm));
 		if (dto.ratings)
-			filters.push(this.getRatingsFilter(dto.ratings.split('|').map(r => +r)));
+			filters.push(this.getRatingsFilter(convertToNumber(dto.ratings)));
 
 		if (dto.minPrice || dto.maxPrice)
 			filters.push(
@@ -111,15 +111,9 @@ export class ProductService {
 		};
 	}
 
-	private getRatingsFilter(ratings: number[]): Prisma.ProductWhereInput {
+	private getRatingsFilter(ratings: number): Prisma.ProductWhereInput {
 		return {
-			reviews: {
-				some: {
-					rating: {
-						in: ratings
-					}
-				}
-			}
+			averageReviews: ratings
 		};
 	}
 
@@ -252,7 +246,8 @@ export class ProductService {
 				description: '',
 				name: '',
 				price: 0,
-				slug: ''
+				slug: '',
+				averageReviews: 0
 			}
 		});
 
@@ -260,7 +255,7 @@ export class ProductService {
 	}
 
 	async update(id: number, dto: ProductDto) {
-		const { description, image, price, name, categoryId } = dto;
+		const { description, image, price, name, categoryId, averageReviews } = dto;
 
 		await this.categoryService.byId(categoryId);
 
@@ -273,6 +268,7 @@ export class ProductService {
 				image: image,
 				price: price,
 				name: name,
+				averageReviews: averageReviews,
 				slug: generateSlug(name),
 				category: {
 					connect: {

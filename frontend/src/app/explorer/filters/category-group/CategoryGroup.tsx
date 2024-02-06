@@ -9,7 +9,7 @@ const CategoryGroup: FC = () => {
 	const { queryParams, updateQueryParams } = useFilters()
 	const { data, isLoading } = useCategory()
 
-	console.log(data)
+	// console.log(data)
 
 	return (
 		<FilterWrapper title='Category'>

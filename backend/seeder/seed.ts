@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 
 import { PrismaClient, Product } from '@prisma/client';
 import { generateSlug } from './generate-slug';
+import { getAverage } from './get-average';
 import { getRandomNumber } from './random-number';
 //Использование пакета dotenv для чтения переменных из файла .env в Node
 
@@ -20,6 +21,23 @@ const createProducts = async (quantity: number) => {
 		const categoryName = faker.commerce.department();
 		console.log(productName);
 		console.log(categoryName);
+		const reviews = [];
+		const reviewsRatings = [];
+
+		for (let j = 0; j < getRandomNumber(1, 10); j++) {
+			let rating = getRandomNumber(3, 5);
+			reviewsRatings.push(rating);
+
+			reviews.push({
+				rating: rating,
+				text: faker.lorem.paragraph(),
+				user: {
+					connect: {
+						id: getRandomNumber(1, 2)
+					}
+				}
+			});
+		}
 
 		try {
 			const product = await prisma.product.create({
@@ -28,6 +46,7 @@ const createProducts = async (quantity: number) => {
 					slug: generateSlug(productName),
 					description: faker.commerce.productDescription(),
 					price: +faker.commerce.price({ min: 10, max: 999, dec: 0 }),
+					averageReviews: getAverage(reviewsRatings),
 					user: {
 						connect: {
 							id: getRandomNumber(2, 3)
@@ -63,26 +82,7 @@ const createProducts = async (quantity: number) => {
 						// }
 					},
 					reviews: {
-						create: [
-							{
-								rating: getRandomNumber(1, 5),
-								text: faker.lorem.paragraph(),
-								user: {
-									connect: {
-										id: 2
-									}
-								}
-							},
-							{
-								rating: getRandomNumber(1, 5),
-								text: faker.lorem.paragraph(),
-								user: {
-									connect: {
-										id: 3
-									}
-								}
-							}
-						]
+						create: reviews
 					}
 				}
 			});

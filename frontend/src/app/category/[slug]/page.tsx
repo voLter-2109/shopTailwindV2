@@ -31,7 +31,7 @@ export async function generateMetadata(
 
 export const getDataLenght = async (slug: string) => {
 	const { data: lenght } = await ProductService.getByCategoryLenght(slug)
-	console.log(lenght)
+	// console.log(lenght)
 	return {
 		lenght
 	}
@@ -48,7 +48,7 @@ export const getData = async (slug: string) => {
 const CategoryPage: NextPage<Props> = async ({ params }) => {
 	const { products } = await getData(params.slug)
 
-	console.log(params)
+	// console.log(params)
 	return (
 		<ErrorBoundary fallback={<ErrorComponent />}>
 			<Catalog products={products} title={params.slug} />

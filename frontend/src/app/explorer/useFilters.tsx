@@ -18,7 +18,7 @@ export const useFilters = () => {
 	)
 
 	useEffect(() => {
-		console.log("useFilter")
+		// console.log("useFilter")
 		let key: keyof TypeProductDataFilters
 		for (key in initialFilterState.queryParams) {
 			let value = searchParams.get(key)

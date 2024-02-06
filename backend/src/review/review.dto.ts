@@ -1,12 +1,11 @@
-import { IsNumber, IsString, Max, Min } from 'class-validator';
-import { PrismaModels } from 'src/utils/get-type-model';
+import { IsNumber, IsOptional, IsString, Max, Min } from 'class-validator';
 
 export class ReviewDto {
 	@IsNumber()
 	@Min(1)
 	@Max(5)
-	rating: PrismaModels['Review']['rating'];
+	rating: number;
 
 	@IsString()
-	text: PrismaModels['Review']['text'];
+	text: string;
 }

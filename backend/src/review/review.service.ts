@@ -23,7 +23,7 @@ export class ReviewService {
 	async create(userId: number, dto: ReviewDto, productId: number) {
 		await this.productService.byId(productId);
 
-		return this.prisma.review.create({
+		await this.prisma.review.create({
 			data: {
 				...dto,
 				product: {
@@ -36,6 +36,17 @@ export class ReviewService {
 						id: userId
 					}
 				}
+			}
+		});
+
+		const avarageReview = await this.getAverageValueProductId(productId);
+
+		return this.prisma.product.update({
+			where: {
+				id: productId
+			},
+			data: {
+				averageReviews: avarageReview.rating
 			}
 		});
 	}

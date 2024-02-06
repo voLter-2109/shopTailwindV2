@@ -17,7 +17,7 @@ const ProductService = {
 			url: PRODUCT,
 			params: queryData
 		})
-		// console.log(data.length)
+		// console.log(data)
 		return data
 	},
 

@@ -38,6 +38,8 @@ model Product {
   price       Int
   image       String[]
 
+  averageReviews Int
+
   orderItems OrderItem[]
   reviews    Review[]
 

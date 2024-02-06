@@ -7,9 +7,10 @@ export interface IProductResponse {
 	slug: string
 	description: string
 	price: number
+	averageReviews: number
+	createdAt: string
 	reviews: IReviewResponse[]
 	image: string[]
-	createdAt: string
 	category: ICategoryResponse
 }
 
