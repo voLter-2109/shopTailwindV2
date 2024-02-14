@@ -14,31 +14,19 @@ export async function generateMetadata(
 	parent: ResolvingMetadata
 ): Promise<Metadata> {
 	const slug = params.slug
-	const { lenght } = await getDataLenght(params.slug)
 
 	return {
-		title:
-			SITE_NAME + ' - ' + (lenght && +lenght > 0 ? params.slug : 'category'),
+		title: SITE_NAME + params.slug,
 		openGraph: {
-			title: SITE_NAME + ' ' + slug,
+			title: SITE_NAME + '/' + slug,
 			images: '/logo.svg',
-			description: `Lorem ipsum dolor sit ${
-				lenght && +lenght > 0 ? params.slug : ''
-			}`
+			description: `Lorem ipsum dolor sit ${params.slug}`
 		}
 	}
 }
 
-export const getDataLenght = async (slug: string) => {
-	const { data: lenght } = await ProductService.getByCategoryLenght(slug)
-	// console.log(lenght)
-	return {
-		lenght
-	}
-}
-
 export const getData = async (slug: string) => {
-	const { data: products } = await ProductService.getByCategory(slug)
+	const { data: products } = await ProductService.getByCategory(slug, "page slug")
 
 	return {
 		products

@@ -1,11 +1,11 @@
 'use client'
 
-import { FC } from 'react'
 import { useProfile } from '../../hooks/useProfile'
 import { IProductResponse } from '../../types/product.interface'
 import Heading from '../../ui/heading/Heading'
-import Loader from '../../ui/loader/Loader'
 import ProductItem from '../../ui/product-item/ProductItem'
+import CustomLoading from '../custom-loading/CustomLoading'
+import { FC } from 'react'
 
 const Catalog: FC<{
 	products: IProductResponse[]
@@ -15,7 +15,7 @@ const Catalog: FC<{
 	// console.log(products)
 	const { profile } = useProfile()
 	// console.log(products)
-	if (isLoading) return <Loader />
+	if (isLoading) return <CustomLoading />
 
 	return (
 		<section>

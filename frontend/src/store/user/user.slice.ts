@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
 import { checkAuth, login, logout, register } from './user.actions'
 import { IInitialState } from './user.interface'
+import { createSlice } from '@reduxjs/toolkit'
 
 const getStoreLOcal = (name: string) => {
 	if (typeof localStorage !== 'undefined') {

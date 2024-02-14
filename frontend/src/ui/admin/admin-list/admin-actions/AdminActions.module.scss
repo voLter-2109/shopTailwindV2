@@ -1,0 +1,26 @@
+.actions {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	> button {
+		border-style: none;
+		background-color: transparent;
+		font-size: 1.125rem /* 18px */;
+		line-height: 1.75rem /* 28px */;
+		color: rgb(255 153 2);
+		opacity: 0.8;
+
+		transition-property: opacity;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 150ms;
+        
+		&:hover {
+			opacity: 1;
+		}
+		&::first-letter {
+			outline: 2px solid transparent;
+			outline-offset: 2px;
+		}
+	}
+}

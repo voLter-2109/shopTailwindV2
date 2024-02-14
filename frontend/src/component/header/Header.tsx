@@ -46,16 +46,18 @@ const Header: FC = () => {
 	}
 
 	return (
-		<header className=' w-full shadow-2xl px-16 items-center 
-		h-16 border border-y-primary flex justify-between z-20'>
-			<Link
-				href='/'
-				style={{
-					display: 'flex',
-					justifyContent: 'center'
-				}}
-			>
-				{!isAdminPanel ? (
+		<header
+			className=' w-full shadow-2xl px-16 items-center 
+		h-16 border border-y-primary flex justify-between z-20'
+		>
+			{!isAdminPanel ? (
+				<Link
+					href='/'
+					style={{
+						display: 'flex',
+						justifyContent: 'center'
+					}}
+				>
 					<Image
 						unoptimized={true}
 						width='0'
@@ -66,10 +68,19 @@ const Header: FC = () => {
 						alt='logo'
 						priority={true}
 					/>
-				) : (
+				</Link>
+			) : (
+				<Link
+					href='/admin'
+					style={{
+						display: 'flex',
+						justifyContent: 'center'
+					}}
+				>
 					<h2 className='text-3xl font-semibold text-black'>Admin Panel</h2>
-				)}
-			</Link>
+				</Link>
+			)}
+
 			<Search />
 
 			{/* <form>

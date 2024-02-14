@@ -1,10 +1,11 @@
-'use client'
-
-import { NextPage } from 'next'
+import { NO_INDEX_PAGE } from '../../constant/app.constants'
 import { useOrder } from '../../hooks/useOrder'
 import { IOrderResponse } from '../../types/order.intervace'
 import Heading from '../../ui/heading/Heading'
 import { convertPrice } from '../../utils/convertPrice'
+import { Metadata, NextPage } from 'next'
+
+
 
 const OrderPage: NextPage = () => {
 	const { orders } = useOrder()

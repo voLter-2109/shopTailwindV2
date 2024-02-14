@@ -1,6 +1,6 @@
+import CustomLoading from '../../../../component/custom-loading/CustomLoading'
 import { useCategory } from '../../../../hooks/useCategory'
 import CheckBox from '../../../../ui/filter/checkbox/CheckBox'
-import Loader from '../../../../ui/loader/Loader'
 import FilterWrapper from '../FilterWrapper'
 import { useFilters } from 'explorer/useFilters'
 import { FC } from 'react'
@@ -14,7 +14,7 @@ const CategoryGroup: FC = () => {
 	return (
 		<FilterWrapper title='Category'>
 			{!isLoading ? (
-				<Loader />
+				<CustomLoading />
 			) : data?.length ? (
 				data.map(category => {
 					const isChecked = queryParams.categoryId === category.id.toString()

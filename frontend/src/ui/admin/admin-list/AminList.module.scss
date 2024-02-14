@@ -1,0 +1,37 @@
+.item {
+	margin-top: 1rem /* 16px */;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 0.5rem /* 8px */;
+	background-color: rgb(255 255 255);
+	padding-left: 1.25rem /* 20px */;
+	padding-right: 1.25rem /* 20px */;
+	transition-property: color, background-color, border-color,
+		text-decoration-color, fill, stroke;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 150ms;
+
+	&:hover {
+		background-color: rgb(255 255 255/5);
+	}
+
+	> div {
+		padding-top: 1rem /* 16px */;
+		padding-bottom: 1rem /* 16px */;
+		width: 24%;
+
+		&:last-child {
+			justify-content: flex-end;
+			text-align: right;
+		}
+	}
+}
+
+.notFound {
+	padding-top: 1rem /* 16px */;
+	padding-bottom: 1rem /* 16px */;
+	text-align: center;
+	font-size: 1.125rem /* 18px */;
+	line-height: 1.75rem /* 28px */;
+}

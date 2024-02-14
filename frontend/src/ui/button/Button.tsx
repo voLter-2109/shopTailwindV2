@@ -1,5 +1,6 @@
 import cn from 'clsx'
 import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react'
+import { Fade } from 'react-awesome-reveal'
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 	variantColor: 'dark' | 'light'
@@ -28,7 +29,9 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 				className
 			)}
 		>
-			<span>{children}</span>
+			<span>
+			{children}
+			</span>
 		</button>
 	)
 }

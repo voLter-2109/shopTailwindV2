@@ -36,7 +36,9 @@ const ProductService = {
 		return data
 	},
 
-	async getByCategory(categorySlug: string) {
+	async getByCategory(categorySlug: string, test?: string) {
+		debugger
+
 		return instanse<IProductResponse[]>({
 			method: 'GET',
 			url: `${PRODUCT}/by-category/${categorySlug}`

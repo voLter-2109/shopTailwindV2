@@ -1,8 +1,8 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
 import { errorCatch } from '../../api/api.helper'
 import { removeFromStorage } from '../../services/auth/auth.helper'
 import AuthService from '../../services/auth/auth.service'
 import { IAuthResponse, IEmailPassword } from './user.interface'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
 	'auth/regiter',
@@ -30,6 +30,7 @@ export const login = createAsyncThunk<IAuthResponse, IEmailPassword>(
 )
 
 export const logout = createAsyncThunk('auth/logout', async () => {
+	console.log('first')
 	removeFromStorage()
 })
 

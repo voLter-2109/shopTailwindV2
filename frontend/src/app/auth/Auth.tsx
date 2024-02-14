@@ -1,8 +1,5 @@
 'use client'
 
-import { NextPage } from 'next'
-import { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
 import { useActions } from '../../hooks/useActions'
 import { useAuth } from '../../hooks/useAuth'
 import useAuthRedirect from '../../hooks/useAuthRedirect'
@@ -11,6 +8,10 @@ import Button from '../../ui/button/Button'
 import Heading from '../../ui/heading/Heading'
 import Field from '../../ui/input/Field'
 import { validEmail } from './valid-email'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
 const AuthComponent: NextPage = () => {
 	useAuthRedirect()
@@ -38,10 +39,26 @@ const AuthComponent: NextPage = () => {
 	}
 
 	return (
-		<section className='flex items-center h-screen '>
+		<section className='flex  flex-col justify-between items-center h-screen '>
+			<div className='flex w-full justify-end p-2'>
+				<Button
+					type='button'
+					variantColor='light'
+					{...{
+						onClick: () => {
+							setType(type === 'login' ? 'register' : 'login')
+							clearErrors()
+						}
+					}}
+				>
+					{type === 'login' ? 'sign up' : 'sign in'}
+				</Button>
+			</div>
+
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className='rounded-lg bd-white  p-10 mx-auto bg-bg-gray shadow-2xl'
+				className='rounded-lg w-[30vw] bd-white h-[50vh] p-10 mx-auto bg-bg-gray 
+				shadow-2xl text-center flex flex-col justify-between'
 			>
 				<Heading className='capitalize mb-5 text-center'>{type}</Heading>
 
@@ -70,23 +87,25 @@ const AuthComponent: NextPage = () => {
 					placeholder='Password'
 					error={errors.password?.message}
 				/>
-				<Button variantColor='dark' className='mb-3' type='submit'>
-					{!isLoading ? <span>Let`s go</span> : <span>Loading...</span>}
+				<Button variantColor='dark' className='mb-7 w-full' type='submit'>
+					{!isLoading ? (
+						type === 'login' ? (
+							'login'
+						) : (
+							'register'
+						)
+					) : (
+						<span>Loading...</span>
+					)}
 				</Button>
-
-				<Button
-					type='button'
-					variantColor='light'
-					{...{
-						onClick: () => {
-							setType(type === 'login' ? 'register' : 'login')
-							clearErrors()
-						}
-					}}
-				>
-					{type === 'login' ? '...register' : '...login'}
-				</Button>
+				<Link href='/'>
+					<Button variantColor='light' size='sm' className='!bg-transparent'>
+						<span className='text-black/60'>Продолжить без регистрации?</span>
+					</Button>
+				</Link>
 			</form>
+
+			<footer className='p-2 w-full text-center '>footer</footer>
 		</section>
 	)
 }

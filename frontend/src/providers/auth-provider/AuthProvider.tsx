@@ -21,7 +21,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	useEffect(() => {
 		const accessToken = getAccessToken()
 
-		if (accessToken) checkAuth()
+		if (accessToken && user) checkAuth()
 	}, [])
 
 	useEffect(() => {
@@ -30,10 +30,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 			logout()
 		}
 	}, [pathname])
-
-	// useEffect(() => {
-	// 	if (!user) router.replace('/auth')
-	// }, [user])
 
 	const isProtectedRouter = protectedRouters.some(
 		router => pathname?.startsWith(router)
@@ -50,7 +46,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 	// авторизирован и роут только для admin
 	if (user && isAdminRouter) return <NotFound />
 
-	pathname !== '/auth' && router.replace('/auth')
+	if (pathname !== '/auth') router.replace('/auth')
 	return null
 }
 

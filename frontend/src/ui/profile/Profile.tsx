@@ -1,19 +1,19 @@
 'use client'
 
+import { useActions } from '../../hooks/useActions'
 import { useOutside } from '../../hooks/useOutside'
 import { useProfile } from '../../hooks/useProfile'
-import { logout } from '../../store/user/user.actions'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { FC } from 'react'
 import { Fade } from 'react-awesome-reveal'
 import { FiLogOut } from 'react-icons/fi'
 
 export const HeaderProfile: FC = () => {
 	const { profile } = useProfile()
+
+	const { logout } = useActions()
 	const { isShow, setIsShow, ref } = useOutside(false)
-	const router = useRouter()
 
 	if (!profile?.avatarPath) return null
 
@@ -25,7 +25,11 @@ export const HeaderProfile: FC = () => {
 						// onLoadingComplete={e => }
 						width={43}
 						height={43}
-						src={profile?.avatarPath}
+						src={
+							profile?.avatarPath.includes('default-avatar.png')
+								? '/default-avatar.png'
+								: profile?.avatarPath
+						}
 						alt='profile'
 						className='rounded-full border-primary border border-solid'
 					/>
@@ -61,7 +65,6 @@ export const HeaderProfile: FC = () => {
 							{...{
 								onClick: () => {
 									logout()
-									router.replace('/auth')
 								}
 							}}
 						>
