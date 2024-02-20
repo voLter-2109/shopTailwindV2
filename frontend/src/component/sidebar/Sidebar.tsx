@@ -7,6 +7,7 @@ import { convertToMenuItems } from './convert-to-menu-item'
 import cn from 'clsx'
 import Link from 'next/link'
 import { FC } from 'react'
+import { RxExit } from 'react-icons/rx'
 
 const Sidebar: FC = () => {
 	const { data } = useCategory()
@@ -39,10 +40,15 @@ const Sidebar: FC = () => {
 						)}
 					</ul>
 				</div>
-				<div className='flex flex-col'>
-					<Link href='/'>home</Link>
-					<Link href='/admin'>admin</Link>
-				</div>
+
+				{isAdminPanel && (
+					<Link
+						href='/'
+						className={cn('hover:text-red-500 text-primary mx-auto ')}
+					>
+						<RxExit size={30} />
+					</Link>
+				)}
 			</div>
 		</aside>
 	)

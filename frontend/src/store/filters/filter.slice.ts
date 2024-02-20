@@ -32,6 +32,9 @@ export const filterSlice = createSlice({
 		},
 		resetFilterUpdate: state => {
 			state.isFilterUpdated = false
+		},
+		resetFilter: state => {
+			state.queryParams = initialFilterState.queryParams
 		}
 	}
 })

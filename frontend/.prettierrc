@@ -6,6 +6,9 @@
 	"semi": false,
 	"useTabs": true,
 	"trailingComma": "none",
+
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true,
 	"plugins": ["@trivago/prettier-plugin-sort-imports"],
 	"importOrder": [
 		"<THIRD_PARTY_MODULES>",
@@ -25,7 +28,5 @@
 		"^@/api/(.*)$",
 		"^@../(.*)$",
 		"^@./(.*)$"
-	],
-	"importOrderSeparation": true,
-	"importOrderSortSpecifiers": true
+	]
 }

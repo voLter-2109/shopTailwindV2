@@ -8,6 +8,7 @@ const nextConfig = {
 		SERVER_URL: process.env.SERVER_URL,
 		APP_URL: process.env.APP_URL
 	},
+	
 	images: {
 		remotePatterns: [
 			{
@@ -33,3 +34,13 @@ module.exports = nextConfig
 // 		}
 // 	]
 // }
+
+// headers:{
+// 	source: '/admin/:path*',
+// 	headers: [
+// 		{
+// 		  key: 'Cache-Control',
+// 		  value: 'no-store',
+// 		},
+// 	  ],
+// },

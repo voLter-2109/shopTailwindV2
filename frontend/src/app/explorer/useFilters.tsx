@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 export const useFilters = () => {
 	const pathName = usePathname()
 	const searchParams = useSearchParams()
-	const { updateQueryParam } = useActions()
+	const { updateQueryParam, resetFilter } = useActions()
 	const { replace } = useRouter()
 
 	const { queryParams, isFilterUpdated } = useTypedSelector(
@@ -37,8 +37,6 @@ export const useFilters = () => {
 		// searchParams.forEach((value, key) => {
 		// 	updateQueryParam({ key: key as keyof TypeProductDataFilters, value })
 		// })
-
-
 	}, [])
 
 	const updateQueryParams = (
@@ -61,6 +59,7 @@ export const useFilters = () => {
 	return {
 		updateQueryParams,
 		queryParams,
-		isFilterUpdated
+		isFilterUpdated,
+		resetFilter
 	}
 }

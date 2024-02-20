@@ -9,7 +9,7 @@ export const ADMIN_MENU: IMenuItem[] = [
 	},
 	{
 		label: 'Product',
-		href: getAdminUrl('/product'),
+		href: getAdminUrl('/products'),
 		id: 2
 	},
 	{
@@ -19,12 +19,12 @@ export const ADMIN_MENU: IMenuItem[] = [
 	},
 	{
 		label: 'Reviews',
-		href: getAdminUrl('/review'),
+		href: getAdminUrl('/reviews'),
 		id: 4
 	},
 	{
 		label: 'Order',
-		href: getAdminUrl('/order'),
+		href: getAdminUrl('/orders'),
 		id: 5
 	}
 ]

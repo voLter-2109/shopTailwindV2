@@ -1,17 +1,20 @@
+import Image from 'next/image'
+import Link from 'next/link'
+import { FC } from 'react'
 import { IProductResponse } from '../../types/product.interface'
 import { IFullUser } from '../../types/user.interface'
 import { convertPrice } from '../../utils/convertPrice'
 import AddToCardButton from './AddToCArtButton'
 import FavoriteButton from './FavoriteButton'
 import ProductRating from './ProductRating'
-import Image from 'next/image'
-import Link from 'next/link'
-import { FC } from 'react'
 
 const ProducItem: FC<{ product: IProductResponse; profile: IFullUser }> = ({
 	product,
 	profile
 }) => {
+
+console.log(product)
+
 	const imageLoader = () => {
 		return product.image[0]
 	}

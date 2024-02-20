@@ -64,12 +64,4 @@ export class ReviewService {
 	}
 }
 
-// Клиент Prisma позволяет вам aggregate  использовать числовые поля (такие как Int и Float) модели. Следующий запрос возвращает средний возраст всех пользователей:
 
-// const aggregations = await prisma.user.aggregate({
-//   _avg: {
-//     age: true,
-//   },
-// })
-
-// console.log('Average age:' + aggregations._avg.age)

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException, forwardRef } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { CategoryService } from 'src/category/category.service';
 import { PaginationService } from 'src/pagination/pagination.service';
@@ -17,10 +17,12 @@ export class ProductService {
 	constructor(
 		private prisma: PrismaService,
 		private paginationService: PaginationService,
+		@Inject(forwardRef(() => CategoryService))
 		private categoryService: CategoryService
 	) {}
 
 	async getAll(dto: GetAllProductDto = {}) {
+		console.log(dto);
 		const { perPage, skip } = this.paginationService.getPagination(dto);
 		const filters = this.createFilter(dto);
 		const product = await this.prisma.product.findMany({
@@ -169,6 +171,7 @@ export class ProductService {
 			},
 			select: productReturnObjectFulters
 		});
+		
 
 		if (!product) throw new NotFoundException('Product not found');
 
@@ -280,6 +283,20 @@ export class ProductService {
 	}
 
 	async delete(id: number) {
-		return this.prisma.product.delete({ where: { id: id } });
+		console.log(id);
+
+		const deleteReviews = this.prisma.review.deleteMany({
+			where: {
+				productId: id
+			}
+		});
+
+		const deleteProdut = this.prisma.product.delete({
+			where: {
+				id: id
+			}
+		});
+
+		return await this.prisma.$transaction([deleteReviews, deleteProdut]);
 	}
 }

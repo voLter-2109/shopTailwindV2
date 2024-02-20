@@ -9,7 +9,7 @@ export class StatisticService {
 		const ordersCount = await this.prisma.order.count();
 		const reviewsCount = await this.prisma.review.count();
 		const usersCount = await this.prisma.user.count();
-
+		const productsCount = await this.prisma.product.count();
 		const totalAmount = await this.prisma.order.aggregate({
 			_sum: {
 				total: true
@@ -18,16 +18,18 @@ export class StatisticService {
 
 		return [
 			{
-				name: 'Orders',
-				value: ordersCount
+				name: 'Users',
+				value: usersCount
 			},
+			{ name: 'Product', value: productsCount },
 			{
 				name: 'Rewiews',
 				value: reviewsCount
 			},
+
 			{
-				name: 'Users',
-				value: usersCount
+				name: 'Orders',
+				value: ordersCount
 			},
 			{
 				name: 'Total amount',

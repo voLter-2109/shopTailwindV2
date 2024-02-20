@@ -49,3 +49,5 @@ const RootLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 }
 
 export default RootLayout
+
+// <html lang='en' className={golos.variable}>

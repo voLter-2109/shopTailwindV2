@@ -1,6 +1,3 @@
 export const convertPrice = (price: number) => {
-	return new Intl.NumberFormat('ru-RU', {
-		style: 'currency',
-		currency: 'USD'
-	}).format(price)
+	return new Intl.NumberFormat('ru-RU').format(price) + "💲"
 }

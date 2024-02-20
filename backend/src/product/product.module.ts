@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { CategoryModule } from 'src/category/category.module';
 import { CategoryService } from 'src/category/category.service';
 import { PaginationModule } from 'src/pagination/pagination.module';
@@ -15,6 +15,8 @@ import { ProductService } from './product.service';
 		PaginationService,
 		CategoryService
 	],
-	imports: [CategoryModule, PaginationModule]
+	exports:[ProductService],
+	imports: [forwardRef(() =>CategoryModule),
+		 PaginationModule]
 })
 export class ProductModule {}

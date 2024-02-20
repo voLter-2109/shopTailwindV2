@@ -5,6 +5,8 @@ import ProductService from '../../../services/product/product.service'
 import { Metadata, NextPage, ResolvingMetadata } from 'next'
 import { ErrorBoundary } from 'react-error-boundary'
 
+export const revalidate = 3600
+
 type Props = {
 	params: { slug: string }
 }

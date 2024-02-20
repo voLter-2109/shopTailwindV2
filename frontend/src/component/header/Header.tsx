@@ -81,7 +81,7 @@ const Header: FC = () => {
 				</Link>
 			)}
 
-			<Search />
+			{!isAdminPanel && <Search />}
 
 			{/* <form>
 				<input
@@ -115,14 +115,18 @@ const Header: FC = () => {
 						<MdOutlineAdminPanelSettings size={29} />
 					</Link>
 				)}
-				<Link
-					href='/favorites'
-					className='text-primary transition-all 
+				{!isAdminPanel && (
+					<>
+						<Link
+							href='/favorites'
+							className='text-primary transition-all 
 					duration-300 hover:scale-110'
-				>
-					<AiOutlineHeart size={28} />
-				</Link>
-				<Cart />
+						>
+							<AiOutlineHeart size={28} />
+						</Link>
+						<Cart />
+					</>
+				)}
 				{user ? (
 					<HeaderProfile />
 				) : (

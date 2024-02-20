@@ -22,13 +22,13 @@ const ProductService = {
 	},
 
 	async getSimilar(productId: string | number) {
-		return instanse<IProductData[]>({
+		return instanse<IProductResponse[]>({
 			method: 'GET',
 			url: `${PRODUCT}/similar/${productId}`
 		})
 	},
 	async getBySlug(slug: string) {
-		const { data } = await instanse<IProductData>({
+		const { data } = await instanse<IProductResponse>({
 			method: 'GET',
 			url: `${PRODUCT}/by-slug/${slug}`
 		})

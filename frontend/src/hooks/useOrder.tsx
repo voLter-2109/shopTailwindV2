@@ -3,7 +3,7 @@ import OrderService from '../services/order.service'
 import { IOrderResponse } from '../types/order.intervace'
 
 export const useOrder = () => {
-	const { data } = useQuery(['get order'], () => OrderService.getAll(), {
+	const { data } = useQuery(['get order'], () => OrderService.getByUserId(), {
 		select: ({ data }) => data
 	})
 

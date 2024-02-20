@@ -7,6 +7,7 @@ import StatisticService from '../../services/statistics.service'
 import Heading from '../../ui/heading/Heading'
 import { convertPrice } from '../../utils/convertPrice'
 import style from './DashBouard.module.scss'
+import cn from "clsx"
 
 const DashBoard: FC = () => {
 	const { data, isFetching } = useQuery(
@@ -24,8 +25,8 @@ const DashBoard: FC = () => {
 			) : data?.length ? (
 				<div className={style.wrapper}>
 					{data.map((item, index) => (
-						<div className={style.item} key={item.name}>
-							<div>{item.name}</div>
+						<div className={cn(style.item, "shadow-lg")} key={item.name}>
+							<div className='font-bold'>{item.name}:</div>
 							<div>
 								{index === data.length - 1
 									? convertPrice(item.value || 0)

@@ -1,17 +1,18 @@
 'use client'
 
-import { useActions } from '../../hooks/useActions'
-import { useOutside } from '../../hooks/useOutside'
-import { useProfile } from '../../hooks/useProfile'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { Fade } from 'react-awesome-reveal'
 import { FiLogOut } from 'react-icons/fi'
+import { useActions } from '../../hooks/useActions'
+import { useIsAdminPanel } from '../../hooks/useIsAdminPanel'
+import { useOutside } from '../../hooks/useOutside'
+import { useProfile } from '../../hooks/useProfile'
 
 export const HeaderProfile: FC = () => {
 	const { profile } = useProfile()
-
+const {isAdminPanel} = useIsAdminPanel()
 	const { logout } = useActions()
 	const { isShow, setIsShow, ref } = useOutside(false)
 
@@ -19,7 +20,7 @@ export const HeaderProfile: FC = () => {
 
 	return (
 		<div className='relative ' ref={ref}>
-			<button onClick={() => setIsShow(!isShow)}>
+			<button onClick={() => setIsShow(!isShow)} disabled={isAdminPanel}>
 				{profile?.avatarPath && (
 					<Image
 						// onLoadingComplete={e => }
@@ -35,7 +36,9 @@ export const HeaderProfile: FC = () => {
 					/>
 				)}
 			</button>
-			{isShow && (
+			 
+			
+			{!isAdminPanel && isShow && (
 				<Fade cascade damping={0.1}>
 					<div
 						style={{
@@ -74,6 +77,7 @@ export const HeaderProfile: FC = () => {
 					</div>
 				</Fade>
 			)}
+						
 		</div>
 	)
 }

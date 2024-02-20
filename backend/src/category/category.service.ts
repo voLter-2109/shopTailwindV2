@@ -1,12 +1,16 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException, forwardRef } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
+import { ProductService } from 'src/product/product.service';
 import { generateSlug } from 'src/utils/generate-slug';
 import { CategoryDto } from './category.dto';
 import { returnCategoryObjectts } from './return-category.object';
 
 @Injectable()
 export class CategoryService {
-	constructor(private prisma: PrismaService) {}
+	constructor(private prisma: PrismaService, 
+		@Inject(forwardRef(() => ProductService))
+		private productService: ProductService,
+		 ) {}
 
 	async byId(id: number) {
 		const category = await this.prisma.category.findUnique({
@@ -65,10 +69,28 @@ export class CategoryService {
 	}
 
 	async delete(id: number) {
-		await this.prisma.category.delete({
+		const productInCategory = await  this.prisma.product.findMany({
+			where:{
+			categoryId:+id	
+			}})
+			
+
+		// 	console.log(productInCategory.then((item) =>item ))
+			if(productInCategory.length) {
+
+				for(let item of productInCategory) {
+					await this.productService.delete(item.id)
+				}
+			} 
+		
+
+		 await this.prisma.category.delete({
 			where: { id: +id }
 		});
 
-		return 'Success';
+	
+
+			return 'Success';
 	}
+
 }
