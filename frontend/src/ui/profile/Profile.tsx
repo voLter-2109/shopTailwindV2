@@ -1,18 +1,18 @@
 'use client'
 
+import { useActions } from '../../hooks/useActions'
+import { useIsAdminPanel } from '../../hooks/useIsAdminPanel'
+import { useOutside } from '../../hooks/useOutside'
+import { useProfile } from '../../hooks/useProfile'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 import { Fade } from 'react-awesome-reveal'
 import { FiLogOut } from 'react-icons/fi'
-import { useActions } from '../../hooks/useActions'
-import { useIsAdminPanel } from '../../hooks/useIsAdminPanel'
-import { useOutside } from '../../hooks/useOutside'
-import { useProfile } from '../../hooks/useProfile'
 
 export const HeaderProfile: FC = () => {
 	const { profile } = useProfile()
-const {isAdminPanel} = useIsAdminPanel()
+	const { isAdminPanel } = useIsAdminPanel()
 	const { logout } = useActions()
 	const { isShow, setIsShow, ref } = useOutside(false)
 
@@ -36,8 +36,7 @@ const {isAdminPanel} = useIsAdminPanel()
 					/>
 				)}
 			</button>
-			 
-			
+
 			{!isAdminPanel && isShow && (
 				<Fade cascade damping={0.1}>
 					<div
@@ -77,7 +76,6 @@ const {isAdminPanel} = useIsAdminPanel()
 					</div>
 				</Fade>
 			)}
-						
 		</div>
 	)
 }

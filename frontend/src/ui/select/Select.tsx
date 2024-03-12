@@ -7,7 +7,6 @@ import { Fade } from 'react-awesome-reveal'
 import { BsCaretDownFill } from 'react-icons/bs'
 
 function Select<K>({ data, onChange, value, title }: ISelect) {
-
 	const { isShow, ref, setIsShow } = useOutside(false)
 
 	return (

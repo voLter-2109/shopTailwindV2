@@ -29,9 +29,7 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 				className
 			)}
 		>
-			<span>
-			{children}
-			</span>
+			<span>{children}</span>
 		</button>
 	)
 }

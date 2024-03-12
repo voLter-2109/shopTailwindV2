@@ -1,6 +1,6 @@
+import { IField } from './feild.interface'
 import cn from 'clsx'
 import { forwardRef } from 'react'
-import { IField } from './feild.interface'
 
 const Field = forwardRef<HTMLInputElement, IField>(
 	(

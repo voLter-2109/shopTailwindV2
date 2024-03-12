@@ -1,9 +1,9 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
-import { useFilters } from 'explorer/useFilters'
 import { getAdminUrl } from '../../config/url.config'
 import ProductService from '../../services/product/product.service'
 import { IListItem } from '../../ui/admin/admin-list/admin-list.interface'
 import { formatDate } from '../../utils/format-data'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useFilters } from 'explorer/useFilters'
 
 export const useAdminProducts = () => {
 	const { queryParams, resetFilter } = useFilters()

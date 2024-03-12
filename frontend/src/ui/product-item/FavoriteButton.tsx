@@ -1,8 +1,8 @@
+import UserService from '../../services/user.service'
+import { IFullUser } from '../../types/user.interface'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FC } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import UserService from '../../services/user.service'
-import { IFullUser } from '../../types/user.interface'
 
 const FavoriteButton: FC<{ productId: number; profile: IFullUser }> = ({
 	productId,

@@ -1,7 +1,7 @@
-import axios from 'axios'
 import { getAccessToken, removeFromStorage } from '../services/auth/auth.helper'
 import AuthService from '../services/auth/auth.service'
 import { errorCatch, getContentType } from './api.helper'
+import axios from 'axios'
 
 const instanse = axios.create({
 	baseURL: process.env.SERVER_URL,

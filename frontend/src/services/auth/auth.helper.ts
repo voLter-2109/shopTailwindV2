@@ -1,6 +1,6 @@
-import Cookies from 'js-cookie'
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../constant/token.constants'
 import { IAuthResponse, ITokens } from '../../store/user/user.interface'
+import Cookies from 'js-cookie'
 
 export const saveTokenStorage = (data: ITokens) => {
 	Cookies.set(ACCESS_TOKEN, data.accessToken)
@@ -17,7 +17,7 @@ export const getUserFromStorage = () => {
 }
 
 export const removeFromStorage = () => {
-	console.log("remove from storage")
+	console.log('remove from storage')
 	Cookies.remove(ACCESS_TOKEN)
 	Cookies.remove(REFRESH_TOKEN)
 	localStorage.removeItem('user')

@@ -13,7 +13,7 @@ export interface IAdminListItem {
 export interface AdminList {
 	listItems?: IListItem[]
 	isLoading: boolean
-	removeHandler?: (id:number) => void
+	removeHandler?: (id: number) => void
 }
 
 export interface IAdminActions extends Pick<IListItem, 'editUrl' | 'viewUrl'> {

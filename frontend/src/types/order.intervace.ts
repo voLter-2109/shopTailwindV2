@@ -18,7 +18,6 @@ export interface IOrderResponse {
 	total: number
 }
 
-
 export type TypeDataPlaceOrder = {
 	status?: EnumOrderStatus
 	items: {

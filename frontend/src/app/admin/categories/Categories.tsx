@@ -1,9 +1,9 @@
 'use client'
 
-import { FC } from 'react'
 import { useAdminCategories } from '../../../hooks/admin-hooks/useAdminCategories'
 import AdminList from '../../../ui/admin/admin-list/AdminList'
 import Heading from '../../../ui/heading/Heading'
+import { FC } from 'react'
 
 export const Categories: FC = () => {
 	const { data, isFetched, mutate } = useAdminCategories()
@@ -15,7 +15,6 @@ export const Categories: FC = () => {
 				listItems={data}
 				removeHandler={mutate}
 			/>
-			
 		</>
 	)
 }

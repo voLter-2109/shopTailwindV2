@@ -38,6 +38,7 @@ const RootLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 									<ErrorBoundary fallback={<ErrorComponent />}>
 										{children}
 									</ErrorBoundary>
+									<div id='modal'></div>
 								</main>
 							</div>
 						</div>

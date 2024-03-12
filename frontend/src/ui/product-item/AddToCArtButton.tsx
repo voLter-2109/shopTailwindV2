@@ -1,11 +1,11 @@
 'use client'
 
-import { FC } from 'react'
-import { AiOutlineShoppingCart } from 'react-icons/ai'
-import { BsFillCartFill } from 'react-icons/bs'
 import { useActions } from '../../hooks/useActions'
 import { useCart } from '../../hooks/useCart'
 import { IProductResponse } from '../../types/product.interface'
+import { FC } from 'react'
+import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { BsFillCartFill } from 'react-icons/bs'
 
 const AddToCardButton: FC<{ product: IProductResponse }> = ({ product }) => {
 	const { addToCart, removeFromCart } = useActions()
@@ -26,7 +26,7 @@ const AddToCardButton: FC<{ product: IProductResponse }> = ({ product }) => {
 								product,
 								quantity: 1,
 								price: product.price
-						  })
+							})
 				}}
 			>
 				{currentElement ? (

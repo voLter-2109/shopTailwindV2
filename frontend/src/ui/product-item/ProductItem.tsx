@@ -1,25 +1,24 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { FC } from 'react'
 import { IProductResponse } from '../../types/product.interface'
 import { IFullUser } from '../../types/user.interface'
 import { convertPrice } from '../../utils/convertPrice'
 import AddToCardButton from './AddToCArtButton'
 import FavoriteButton from './FavoriteButton'
 import ProductRating from './ProductRating'
+import Image from 'next/image'
+import Link from 'next/link'
+import { FC } from 'react'
 
 const ProducItem: FC<{ product: IProductResponse; profile: IFullUser }> = ({
 	product,
 	profile
 }) => {
-
-console.log(product)
+	// console.log(product)
 
 	const imageLoader = () => {
 		return product.image[0]
 	}
 	return (
-		<div className='border border-black/25 shadow-2xl rounded-xl  p-2'>
+		<div className='border w-fit border-black/25 shadow-2xl rounded-xl  p-2'>
 			<div
 				className='bg-[rgb(15,23,42)] rounded-xl
 			 relative  w-[220px] h-[150px] overflow-hidden'

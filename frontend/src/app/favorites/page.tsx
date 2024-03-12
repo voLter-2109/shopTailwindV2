@@ -1,4 +1,3 @@
-
 import ErrorComponent from '../../component/error/Error'
 import { NO_INDEX_PAGE } from '../../constant/app.constants'
 import FavoritesPage from './Favorites'

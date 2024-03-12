@@ -10,7 +10,6 @@ export interface IUserResponse {
 	isAdmin: boolean
 }
 
-
 export type UserTypeData = {
 	email: string
 	password?: string

@@ -4,7 +4,6 @@ import { IMenuItem } from './menu.interface'
 export const convertToMenuItems = (
 	categories: ICategoryResponse[]
 ): IMenuItem[] => {
-	console.log(categories)
 	return categories.map(category => ({
 		label: category.name,
 		href: `/category/${category.slug}`,

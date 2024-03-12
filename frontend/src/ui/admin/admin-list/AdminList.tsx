@@ -25,10 +25,6 @@ const AdminList: FC<AdminList> = ({
                     />
                 ))
             ) : (
-
-
-
-                
                 <h2>end</h2>
             )}
         </div>
@@ -37,14 +33,3 @@ const AdminList: FC<AdminList> = ({
 
 export default AdminList
 
-// (listItems && listItems?.length)  ?
-// (listItems.map(listItem => (
-//         <AdminListItem
-//         key={listItem.id}
-//         listItem={listItem}
-//         removeHandler={removeHandler ? ()=> removeHandler(listItem.id) : undefined}
-//         />
-//         ))
-//         ):(
-//             <div className={style.notFound}>Elements not found</div>
-//         )

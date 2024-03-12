@@ -1,11 +1,11 @@
 'use client'
 
-import Image from 'next/image'
-import { FC } from 'react'
 import { ICartItem } from '../../types/cart.interface'
 import { convertPrice } from '../../utils/convertPrice'
 import style from './Cart.module.scss'
 import { CartActions } from './CartActions'
+import Image from 'next/image'
+import { FC } from 'react'
 
 export const CartItem: FC<{ item: ICartItem }> = ({ item }) => {
 	const imageLoader = () => {

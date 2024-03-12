@@ -12,18 +12,15 @@
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 150ms;
 
-	
-	
-	
 	&:hover {
 		background-color: rgb(255 255 255/5);
 	}
-	
+
 	> div {
 		padding-top: 1rem /* 16px */;
 		padding-bottom: 1rem /* 16px */;
 		width: 30%;
-		
+
 		&:last-child {
 			justify-content: flex-end;
 			text-align: start;
@@ -31,7 +28,7 @@
 		transform: translateX(-100%);
 		opacity: 0;
 		animation: slideInLeft 1s forwards;
-	
+
 		@for $i from 1 through 10 {
 			&:nth-child(#{$i}) {
 				animation-delay: 0.3s * $i;
@@ -48,14 +45,13 @@
 	line-height: 1.75rem /* 28px */;
 }
 
-
 @keyframes slideInLeft {
-from {
-	transform: translateX(-100%);
-	opacity: 0;
-}
-to {
-	transform: translateX(0);
-	opacity: 1;
-}
+	from {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }

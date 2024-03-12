@@ -1,8 +1,7 @@
 .wrapper {
 	display: flex;
 	flex-direction: column;
-	gap:10px;
-
+	gap: 10px;
 
 	.item {
 		border-radius: 0.5rem;
@@ -10,20 +9,19 @@
 		padding: 1.5rem;
 		display: grid;
 		grid-template-columns: 1fr 3fr;
-		
-		
+
 		> div {
 			font-weight: 700;
 			font-size: large;
 			transform: translateX(-100%);
 			opacity: 0;
 			animation: slideInLeft 1s forwards;
-			
+
 			&:first-child {
 				margin-right: 8px;
 
 				&:after {
-					content: "♨️";
+					content: '♨️';
 				}
 			}
 

@@ -31,8 +31,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 	}, [pathname])
 
-	const isProtectedRouter = protectedRouters.some(
-		router => pathname?.startsWith(router)
+	const isProtectedRouter = protectedRouters.some(router =>
+		pathname?.startsWith(router)
 	)
 
 	const isAdminRouter = pathname?.startsWith(ADMIN_PANEL_URL)

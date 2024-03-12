@@ -5,8 +5,6 @@ import Heading from '../../ui/heading/Heading'
 import { convertPrice } from '../../utils/convertPrice'
 import { Metadata, NextPage } from 'next'
 
-
-
 const OrderPage: NextPage = () => {
 	const { orders } = useOrder()
 

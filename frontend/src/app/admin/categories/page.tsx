@@ -1,7 +1,7 @@
-import { ErrorBoundary } from 'react-error-boundary'
 import ErrorComponent from '../../../component/error/Error'
 import { NO_INDEX_PAGE } from '../../../constant/app.constants'
 import { Categories } from './Categories'
+import { ErrorBoundary } from 'react-error-boundary'
 
 export const metadata = {
 	title: 'Categories',
@@ -9,10 +9,11 @@ export const metadata = {
 }
 
 const page = () => {
-	return <ErrorBoundary fallback={<ErrorComponent />}>
-
-	 <Categories />
-	</ErrorBoundary>
+	return (
+		<ErrorBoundary fallback={<ErrorComponent />}>
+			<Categories />
+		</ErrorBoundary>
+	)
 }
 
 export default page

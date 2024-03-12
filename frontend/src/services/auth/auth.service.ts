@@ -1,10 +1,10 @@
-import axios from 'axios'
-import Cookies from 'js-cookie'
 import { getContentType } from '../../api/api.helper'
 import instanse from '../../api/api.interceptor'
 import { REFRESH_TOKEN } from '../../constant/token.constants'
 import { IAuthResponse, IEmailPassword } from '../../store/user/user.interface'
 import { saveToStorage } from './auth.helper'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const AuthService = {
 	async main(type: 'login' | 'register', data: IEmailPassword) {
