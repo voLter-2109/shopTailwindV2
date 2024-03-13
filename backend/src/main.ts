@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-import { path } from 'app-root-path';
 import { AppModule } from './app.module';
-// const ngrok = require('ngrok');
+const ngrok = require('ngrok');
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule, {
@@ -27,7 +26,8 @@ async function bootstrap() {
 	await app.listen(port, () => {
 		console.log(`Example app listening on port ${port}`);
 	});
-	// const url = await ngrok.connect(4200);
+	// const url = await ngrok.connect(port);
+// ! перестал подключаться из России, нужен только для получения ответа от юкассы
 	// ! ngrok для получения внешнего подтверждения оплаты от yookassa
 	//! полученный url необходимо ввести на странице https://yookassa.ru/my/merchant/integration/http-notifications
 	// ! ответ на данный url подтвердит оплату заказа и изменит order.status

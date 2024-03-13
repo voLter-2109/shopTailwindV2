@@ -38,6 +38,7 @@ export const Cart: FC = () => {
 		{
 			onSuccess({ data }) {
 				reset()
+				// отправляет на сайт оплаты
 				push(data.confirmation.confirmation_url)
 			}
 		}

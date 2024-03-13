@@ -76,7 +76,7 @@ export class OrderService {
 		const createPayload: ICreatePayment = {
 			amount: {
 				value: total.toFixed(2),
-				currency: 'RUB'
+				currency: 'EN'
 			},
 			payment_method_data: {
 				type: 'bank_card'

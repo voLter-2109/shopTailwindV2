@@ -1,6 +1,9 @@
 # shopTailwindV2
 
 <ul>
-<li>backend - nex.js \ prisma \ auth - jwt</li>
-<li>frontend - next.js \ typescript \ react-query \ redux \ redux-persist</li>
+<li>backend - nestjs \ prisma \ auth - jwt</li>
+<li>frontend - nextjs \ typescript \ react-query \ redux \ redux-persist</li>
 </ul>
+
+
+
