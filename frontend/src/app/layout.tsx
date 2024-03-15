@@ -1,5 +1,6 @@
 'use client'
 
+import CustomLoading from '../component/custom-loading/CustomLoading'
 import ErrorComponent from '../component/error/Error'
 import Header from '../component/header/Header'
 import Sidebar from '../component/sidebar/Sidebar'
@@ -7,7 +8,7 @@ import Providers from '../providers/Providers'
 import './global.css'
 import { Roboto } from 'next/font/google'
 import { usePathname } from 'next/navigation'
-import { FC, PropsWithChildren } from 'react'
+import { FC, PropsWithChildren, Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
 const golos = Roboto({
@@ -31,13 +32,15 @@ const RootLayout: FC<PropsWithChildren<unknown>> = ({ children }) => {
 						<div className='flex flex-col'>
 							<Header />
 							<div className='flex flex-row overflow-y-hidden'>
-								<div className='w-[15vw]'>
+								<div className=' min:w-fit border-r-2 border-primary/20 shadow-2xl'>
 									<Sidebar />
 								</div>
 								<main className='p-7 w-[85vw]'>
-									<ErrorBoundary fallback={<ErrorComponent />}>
-										{children}
-									</ErrorBoundary>
+									<Suspense fallback={<CustomLoading />}>
+										<ErrorBoundary fallback={<ErrorComponent />}>
+											{children}
+										</ErrorBoundary>
+									</Suspense>
 									<div id='modal'></div>
 								</main>
 							</div>

@@ -1,33 +1,38 @@
+import { createAsyncThunk } from '@reduxjs/toolkit'
 import { errorCatch } from '../../api/api.helper'
 import { removeFromStorage } from '../../services/auth/auth.helper'
 import AuthService from '../../services/auth/auth.service'
 import { IAuthResponse, IEmailPassword } from './user.interface'
-import { createAsyncThunk } from '@reduxjs/toolkit'
 
-export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
+export const register = createAsyncThunk<IAuthResponse, IEmailPassword,{ rejectValue: string }>(
 	'auth/regiter',
 	async (data, thunkAPi) => {
 		try {
 			const response = await AuthService.main('register', data)
 			return response
 		} catch (error) {
-			return thunkAPi.rejectWithValue(error)
+			const er = errorCatch(error)
+			return thunkAPi.rejectWithValue(er)
 		}
 	}
 )
 
-export const login = createAsyncThunk<IAuthResponse, IEmailPassword>(
-	'auth/login',
-	async (data, thunkAPi) => {
-		// console.log(data)
-		try {
-			const response = await AuthService.main('login', data)
-			return response
-		} catch (error) {
-			return thunkAPi.rejectWithValue(error)
-		}
+export const login = createAsyncThunk<
+	IAuthResponse,
+	IEmailPassword,
+	{ rejectValue: string }
+>('auth/login', async (data, thunkAPi) => {
+	// console.log(data)
+	try {
+		const response = await AuthService.main('login', data)
+		return response
+	} catch (error) {
+		// console.log(error)
+		const er = errorCatch(error)
+		// console.log(er)
+		return thunkAPi.rejectWithValue(er)
 	}
-)
+})
 
 export const logout = createAsyncThunk('auth/logout', async () => {
 	console.log('first')

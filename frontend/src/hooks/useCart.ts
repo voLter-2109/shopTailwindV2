@@ -1,10 +1,11 @@
 import { store } from '../store/store'
+import { ICartItem } from '../types/cart.interface'
 import { useTypedSelector } from './useTypedSelector'
 
 export const useCart = () => {
 	const state = store.getState()
 	// console.log(state)
-	const items = useTypedSelector(state => state.cart.items)
+	const items:ICartItem[] = useTypedSelector(state => state.cart.items)
 
 	const total = items.reduce(
 		(acc: number, item: { price: number; quantity: number }) =>

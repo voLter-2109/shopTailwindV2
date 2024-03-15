@@ -34,7 +34,17 @@ const LeaveReview: FC<{ productId: number }> = ({ productId }) => {
 		reset()
 	}
 
-	if (isSuccess) return <div>Reviews successfuly puvlished⭐</div>
+	if (isSuccess)
+		return (
+			<div>
+				<span>Reviews successfuly puvlished⭐</span>
+				<br />
+				<span>your comment will be displayed after verification</span>
+				<br />
+				<span className='text-xs'>😊or reload the page</span>
+				<button onClick={() => window.location.reload()}>🔄️</button>
+			</div>
+		)
 
 	return (
 		<div>

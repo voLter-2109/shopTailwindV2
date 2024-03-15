@@ -12,11 +12,12 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { CiWarning } from 'react-icons/ci'
 
 const AuthComponent: NextPage = () => {
 	useAuthRedirect()
-	const { isLoading } = useAuth()
-	const { login, register } = useActions()
+	const { isLoading, errorMessage } = useAuth()
+	const { login, register, resetErrorMessage } = useActions()
 	const [type, setType] = useState<'login' | 'register'>('login')
 
 	const {
@@ -47,6 +48,7 @@ const AuthComponent: NextPage = () => {
 					{...{
 						onClick: () => {
 							setType(type === 'login' ? 'register' : 'login')
+							resetErrorMessage()
 							clearErrors()
 						}
 					}}
@@ -98,6 +100,12 @@ const AuthComponent: NextPage = () => {
 						<span>Loading...</span>
 					)}
 				</Button>
+				{errorMessage && (
+					<div>
+						<CiWarning size={39} className='inline h-5 fill-red-600 ' />
+						<span className='text-red-600'>{errorMessage}</span>
+					</div>
+				)}
 				<Link href='/'>
 					<Button variantColor='light' size='sm' className='!bg-transparent'>
 						<span className='text-black/60'>Продолжить без регистрации?</span>

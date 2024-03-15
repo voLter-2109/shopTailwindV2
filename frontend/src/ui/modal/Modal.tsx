@@ -1,4 +1,5 @@
 import style from './Modal.module.scss'
+import cn from 'clsx'
 import { FC, PropsWithChildren, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { RiCloseFill } from 'react-icons/ri'
@@ -24,7 +25,7 @@ const Modal: FC<PropsWithChildren<IModal>> = ({
 
 	return createPortal(
 		<div
-			className={style.overlay}
+			className={cn(style.overlay, 'z-50')}
 			ref={divRef}
 			onClick={e => handleCloModal(e)}
 		>

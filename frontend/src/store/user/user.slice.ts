@@ -12,16 +12,22 @@ const getStoreLOcal = (name: string) => {
 
 const initialState: IInitialState = {
 	user: getStoreLOcal('user'),
-	isLoading: false
+	isLoading: false,
+	errorMessage: ''
 }
 //
 export const userSlice = createSlice({
 	name: 'user',
 	initialState,
-	reducers: {},
+	reducers: {
+		resetErrorMessage: state => {
+			state.errorMessage = initialState.errorMessage
+		}
+	},
 	extraReducers: builder => {
 		builder.addCase(register.pending, state => {
 			state.isLoading = true
+			state.errorMessage = initialState.errorMessage
 		}),
 			builder.addCase(register.fulfilled, (state, action) => {
 				state.isLoading = false
@@ -29,9 +35,10 @@ export const userSlice = createSlice({
 			}),
 			builder.addCase(register.rejected, (state, action) => {
 				state.isLoading = false
+				state.errorMessage = action.payload
 			})
 		builder.addCase(login.pending, (state, action) => {
-			// console.log(action.payload)
+			state.errorMessage = initialState.errorMessage
 			state.isLoading = true
 		}),
 			builder.addCase(login.fulfilled, (state, action) => {
@@ -41,6 +48,7 @@ export const userSlice = createSlice({
 			builder.addCase(login.rejected, (state, action) => {
 				state.isLoading = false
 				state.user = null
+				state.errorMessage = action.payload
 			}),
 			builder.addCase(logout.fulfilled, (state, action) => {
 				state.isLoading = false

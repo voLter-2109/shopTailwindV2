@@ -14,8 +14,8 @@ const Sidebar: FC = () => {
 	const { isAdminPanel, pathname } = useIsAdminPanel()
 
 	return (
-		<aside className='p-6 z-50'>
-			<div className='flex flex-col justify-between text-center min-h-[80vh]'>
+		<aside className='p-6 z-50 '>
+			<div className='flex flex-col justify-between text-center min-h-[80vh] '>
 				<div>
 					<span className='font-bold text-2xl mb-4 inline-block'>
 						{isAdminPanel ? 'Menu:' : 'Categories:'}
@@ -38,6 +38,7 @@ const Sidebar: FC = () => {
 								)
 							}
 						)}
+						<li className='text-sm opacity-50 w-[15vw]'>🤔остается вопрос с оптимизаций, долгое срабатывание Loadind при навигации</li>
 					</ul>
 				</div>
 

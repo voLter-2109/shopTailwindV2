@@ -5,6 +5,7 @@ import Modal from '../../../../ui/modal/Modal'
 import LeaveReview from './LeaveReview'
 import ReviewsItem from './ReviewsItem'
 import { FC, useState } from 'react'
+import { MdOutlineRateReview } from 'react-icons/md'
 
 interface IProductReviews {
 	reviews: IReviewResponse[]
@@ -22,9 +23,15 @@ const ProductReviews: FC<IProductReviews> = ({ productId, reviews }) => {
 			<div className='mb-9'>
 				<Heading className='mb-3'>Reviews:</Heading>
 				{user && (
-					<button className='text-primary' onClick={() => setIsModalOpen(true)}>
-						Leave a review
-					</button>
+					<>
+						<MdOutlineRateReview size={35} className='inline-block' />
+						<button
+							className='text-primary'
+							onClick={() => setIsModalOpen(true)}
+						>
+							Leave a review
+						</button>
+					</>
 				)}
 			</div>
 
@@ -33,7 +40,7 @@ const ProductReviews: FC<IProductReviews> = ({ productId, reviews }) => {
 					<LeaveReview productId={productId} />
 				</Modal>
 			)}
-			<div className='grid grid-cols-4 gap-10'>
+			<div className='flex flex-col gap-10'>
 				{reviews.map(review => (
 					<ReviewsItem key={review.id} review={review} />
 				))}
