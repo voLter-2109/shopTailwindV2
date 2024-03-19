@@ -58,7 +58,6 @@ const createProducts = async (quantity: number) => {
 						faker.image.urlLoremFlickr({
 							width: 500,
 							height: 500,
-							category: 'technics'
 						})
 					),
 

@@ -1,4 +1,9 @@
-import { Inject, Injectable, NotFoundException, forwardRef } from '@nestjs/common';
+import {
+	Inject,
+	Injectable,
+	NotFoundException,
+	forwardRef
+} from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { ProductService } from 'src/product/product.service';
 import { generateSlug } from 'src/utils/generate-slug';
@@ -7,12 +12,14 @@ import { returnCategoryObjectts } from './return-category.object';
 
 @Injectable()
 export class CategoryService {
-	constructor(private prisma: PrismaService, 
+	constructor(
+		private prisma: PrismaService,
 		@Inject(forwardRef(() => ProductService))
-		private productService: ProductService,
-		 ) {}
+		private productService: ProductService
+	) {}
 
 	async byId(id: number) {
+		console.log('byId', id);
 		const category = await this.prisma.category.findUnique({
 			where: {
 				id: +id
@@ -43,7 +50,7 @@ export class CategoryService {
 	}
 
 	async getAll() {
-		console.log('getAll'); 
+		console.log('getAll');
 		return this.prisma.category.findMany({
 			select: returnCategoryObjectts
 		});
@@ -69,28 +76,23 @@ export class CategoryService {
 	}
 
 	async delete(id: number) {
-		const productInCategory = await  this.prisma.product.findMany({
-			where:{
-			categoryId:+id	
-			}})
-			
+		const productInCategory = await this.prisma.product.findMany({
+			where: {
+				categoryId: +id
+			}
+		});
 
 		// 	console.log(productInCategory.then((item) =>item ))
-			if(productInCategory.length) {
+		if (productInCategory.length) {
+			for (let item of productInCategory) {
+				await this.productService.delete(item.id);
+			}
+		}
 
-				for(let item of productInCategory) {
-					await this.productService.delete(item.id)
-				}
-			} 
-		
-
-		 await this.prisma.category.delete({
+		await this.prisma.category.delete({
 			where: { id: +id }
 		});
 
-	
-
-			return 'Success';
+		return 'Success';
 	}
-
 }

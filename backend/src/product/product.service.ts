@@ -1,4 +1,9 @@
-import { Inject, Injectable, NotFoundException, forwardRef } from '@nestjs/common';
+import {
+	Inject,
+	Injectable,
+	NotFoundException,
+	forwardRef
+} from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { CategoryService } from 'src/category/category.service';
 import { PaginationService } from 'src/pagination/pagination.service';
@@ -11,6 +16,9 @@ import {
 	productReturnObject,
 	productReturnObjectFulters
 } from './return.product.object';
+
+import { faker } from '@faker-js/faker';
+import { getRandomNumber } from 'seeder/random-number';
 
 @Injectable()
 export class ProductService {
@@ -49,6 +57,37 @@ export class ProductService {
 				where: filters
 			})
 		};
+	}
+
+	async fixImagetsts() {
+		const { length, product } = await this.getAll();
+
+		for (const item of product) {
+			console.log(item);
+			console.log('item: ' + item.categoryId);
+			await this.update(item.id, {
+				categoryId: item.category.id,
+				description: item.description,
+				price: item.price,
+				name: item.name,
+				averageReviews: item.averageReviews,
+				image: Array.from({
+					length: getRandomNumber(2, 7)
+				}).map(() =>
+					faker.image.urlLoremFlickr({
+						width: 500,
+						height: 500
+					})
+				)
+			});
+		}
+
+		return {
+			message: 'ok'
+		};
+
+		// update(id: number, dto: ProductDto) {
+		// 	const { description, image, price, name, categoryId, averageReviews } = dto;
 	}
 
 	private createFilter(dto: GetAllProductDto): Prisma.ProductWhereInput {
@@ -171,7 +210,6 @@ export class ProductService {
 			},
 			select: productReturnObjectFulters
 		});
-		
 
 		if (!product) throw new NotFoundException('Product not found');
 
@@ -259,7 +297,7 @@ export class ProductService {
 
 	async update(id: number, dto: ProductDto) {
 		const { description, image, price, name, categoryId, averageReviews } = dto;
-
+		console.log('update', categoryId);
 		await this.categoryService.byId(categoryId);
 
 		return this.prisma.product.update({

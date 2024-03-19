@@ -7,11 +7,6 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 
 const Thanks: NextPage = () => {
-	const { reset } = useActions()
-
-	useEffect(() => {
-		reset()
-	}, [])
 
 	return (
 		<div className='h-full w-full flex flex-col justify-center items-center'>

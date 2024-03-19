@@ -9,7 +9,7 @@ import { PaymentStatusDto } from './payment-status.dto';
 
 const checkout = new YooCheckout({
 	shopId: '266419',
-	secretKey: 'test_Q9ejlTpPXFLi-DgAk8LSp3n0maZEk84pg9s8vdhj8yI'
+	secretKey: 'test_Q9ejlTpPXFLi-DgAk8LSp3n0maZEk84pg9s8vdhj8yI' 
 });
 
 @Injectable()
@@ -57,6 +57,7 @@ export class OrderService {
 		const total = dto.items.reduce((acc, item) => {
 			return acc + item.price * item.quantity;
 		}, 0);
+		console.log(dto);
 
 		const order = this.prisma.order.create({
 			data: {
@@ -76,7 +77,7 @@ export class OrderService {
 		const createPayload: ICreatePayment = {
 			amount: {
 				value: total.toFixed(2),
-				currency: 'EN'
+				currency: 'RUB'
 			},
 			payment_method_data: {
 				type: 'bank_card'
@@ -94,10 +95,11 @@ export class OrderService {
 				createPayload,
 				idempotenceKey
 			);
+			console.log(payment);
 			return payment;
 		} catch (error) {
-			// console.error('error');
-			return error;
+			console.error('error');
+			throw new Error(error.message);
 		}
 	}
 

@@ -24,7 +24,7 @@ export const Cart: FC = () => {
 	const { reset } = useActions()
 
 	const { mutate } = useMutation(
-		['create order andpayment'],
+		['create order and payment'],
 		() =>
 			OrderService.placeOrder({
 				items: items.map(
@@ -37,6 +37,7 @@ export const Cart: FC = () => {
 			}),
 		{
 			onSuccess({ data }) {
+				console.log(data.confirmation)
 				reset()
 				// отправляет на сайт оплаты
 				push(data.confirmation.confirmation_url)

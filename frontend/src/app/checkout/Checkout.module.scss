@@ -1,7 +1,6 @@
 .checkout {
-	display: grid;
-	gap: 80px;
-	grid-template-columns: 2fr 1.2fr;
+	display: flex;
+	flex-direction: column;
 
 	.list {
 		.item {
@@ -68,7 +67,7 @@
 }
 
 .recommended {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
+	display: flex;
 	gap: 20px;
+	flex-wrap: wrap;
 }
