@@ -37,8 +37,3 @@ const RaitingGroup: FC = () => {
 }
 
 export default RaitingGroup
-
-// updateQueryParams(
-// 	'ratings',
-// 	updateRatingsQuery(queryParams.ratings, rating.toString())
-// )

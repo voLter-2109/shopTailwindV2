@@ -1,6 +1,7 @@
 'use client'
 
 import { useActions } from '../../hooks/useActions'
+import { useAuth } from '../../hooks/useAuth'
 import { useCart } from '../../hooks/useCart'
 import { useProfile } from '../../hooks/useProfile'
 import OrderService from '../../services/order.service'
@@ -13,14 +14,14 @@ import CkeckOutItem from './CheckOutItem'
 import style from './Checkout.module.scss'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 
 const CheckOut: FC<{ products: IProductResponse[] }> = ({ products = [] }) => {
 	const { items, total } = useCart()
 	const { reset } = useActions()
 	const { push } = useRouter()
 	const { profile } = useProfile()
+	const { user } = useAuth()
 
 	const { mutate } = useMutation(
 		['create order and payment'],
@@ -34,11 +35,16 @@ const CheckOut: FC<{ products: IProductResponse[] }> = ({ products = [] }) => {
 			}),
 		{
 			onSuccess({ data }) {
+				console.log(data)
 				push(data.confirmation.confirmation_url)
 				reset()
 			}
 		}
 	)
+
+	useEffect(() => {
+		if (!user) push('/auth')
+	}, [])
 
 	return (
 		<>

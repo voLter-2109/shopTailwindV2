@@ -1,49 +1,23 @@
 'use client'
 
-import { useActions } from '../../hooks/useActions'
+import { useAuth } from '../../hooks/useAuth'
 import { useCart } from '../../hooks/useCart'
 import { useOutside } from '../../hooks/useOutside'
-import OrderService from '../../services/order.service'
 import { ICartItem } from '../../types/cart.interface'
 import { convertPrice } from '../../utils/convertPrice'
 import Button from '../button/Button'
 import { SquareButton } from '../button/SquareButton'
 import style from './Cart.module.scss'
 import { CartItem } from './CartItem'
-import { useMutation } from '@tanstack/react-query'
 import cn from 'clsx'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { FC } from 'react'
 import { RiShoppingCartLine } from 'react-icons/ri'
 
 export const Cart: FC = () => {
 	const { isShow, setIsShow, ref } = useOutside(false)
 	const { items, total } = useCart()
-	const { push } = useRouter()
-	const { reset } = useActions()
-
-	const { mutate } = useMutation(
-		['create order and payment'],
-		() =>
-			OrderService.placeOrder({
-				items: items.map(
-					(item: { price: any; quantity: any; product: { id: any } }) => ({
-						price: item.price,
-						quantity: item.quantity,
-						productId: item.product.id
-					})
-				)
-			}),
-		{
-			onSuccess({ data }) {
-				console.log(data.confirmation)
-				reset()
-				// отправляет на сайт оплаты
-				push(data.confirmation.confirmation_url)
-			}
-		}
-	)
+	const { user } = useAuth()
 
 	return (
 		<div className='relative' ref={ref}>
@@ -85,17 +59,16 @@ export const Cart: FC = () => {
 					{!!items.length && (
 						<>
 							<div className='mt-7 md-5'>
-								<Link className={'btn btn-black'} href={'/checkout'}>
-									go to checkout
+								<Link
+									className={'btn btn-black'}
+									href={user ? '/checkout' : '/auth'}
+									onClick={() => {
+										setIsShow(!isShow)
+									}}
+								>
+									<Button variantColor='light'>go to checkout</Button>
 								</Link>
 							</div>
-							<Button
-								variantColor='light'
-								className='btn-link mt-5 md-2 transition  hover:scale-110'
-								onClick={() => mutate()}
-							>
-								buy
-							</Button>
 						</>
 					)}
 				</div>

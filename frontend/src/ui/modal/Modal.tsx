@@ -1,5 +1,5 @@
 import style from './Modal.module.scss'
-import cn from 'clsx'
+	import cn from 'clsx'
 import { FC, PropsWithChildren, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { RiCloseFill } from 'react-icons/ri'

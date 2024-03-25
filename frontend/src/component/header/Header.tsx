@@ -83,25 +83,6 @@ const Header: FC = () => {
 
 			{!isAdminPanel && <Search />}
 
-			{/* <form>
-				<input
-					placeholder='file loader'
-					className={cn(
-						'px-4 w-full outline-none border rounded-lg border-gray border-solid focus:border-primary   transition-all'
-					)}
-					type='file'
-					onChange={handleFileChange}
-				/>
-				<button
-					type='submit'
-					onClick={e => {
-						e.preventDefault()
-						handleUpload()
-					}}
-				>
-					sent
-				</button>
-			</form> */}
 			<div
 				className='flex items-center justify-end gap-10'
 				style={{ justifyContent: 'space-around' }}
@@ -134,6 +115,7 @@ const Header: FC = () => {
 						href={'/auth'}
 						className='text-primary transition-all 
 					duration-300 hover:scale-110'
+
 					>
 						Войти
 					</Link>
@@ -144,3 +126,25 @@ const Header: FC = () => {
 }
 
 export default Header
+
+{
+	/* <form>
+				<input
+					placeholder='file loader'
+					className={cn(
+						'px-4 w-full outline-none border rounded-lg border-gray border-solid focus:border-primary   transition-all'
+					)}
+					type='file'
+					onChange={handleFileChange}
+				/>
+				<button
+					type='submit'
+					onClick={e => {
+						e.preventDefault()
+						handleUpload()
+					}}
+				>
+					sent
+				</button>
+			</form> */
+}
